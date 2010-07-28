@@ -9,9 +9,10 @@ Welcome to Py.mn's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    python-intro
+   data_structure
 
 Indices and tables
 ==================
