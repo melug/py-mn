@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 1
 
    python-intro
+   python/install/index
    data_structure
 
 Indices and tables
