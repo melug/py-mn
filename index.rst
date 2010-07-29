@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    python-intro
+   python/install/index
 
 Indices and tables
 ==================
