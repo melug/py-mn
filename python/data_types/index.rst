@@ -6,3 +6,4 @@ Contents:
 .. toctree::
 
    Жагсаалт <list>
+   Толь <dictionary>

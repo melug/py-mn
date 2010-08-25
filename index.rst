@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   python/python-intro
+   python/intro
    python/install/index
    python/data_types/index
 
