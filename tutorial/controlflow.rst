@@ -16,7 +16,7 @@ More Control Flow Tools
 
 Голчлон хэрэглэгддэг илэрхийллүүдийн нэг бол :keyword:`if` илэрхийлэл юм.  Жишээ::
 
-   >>> x = int(raw_input("Please enter an integer: "))
+   >>> x = int(raw_input("Бүхэл тоо оруул: "))
    Бүхэл тоо оруул: 42
    >>> if x < 0:
    ...      x = 0
@@ -47,18 +47,16 @@ More Control Flow Tools
    statement: for
 
 :keyword:`for` илэрхийлэл нь Пайтон хэлэнд бидний өмнө хэрэглэж заншсан С болон 
-Паскал хэлний for илэрхийллээс бага зэрэг илүү гэж болно. Rather than always iterating over an arithmetic progression
-of numbers (like in Pascal), or giving the user the ability to define both the
-iteration step and halting condition (as C), Python's :keyword:`for` statement
-iterates over the items of any sequence (a list or a string), in the order that
-they appear in the sequence.  For example (no pun intended):
+Паскал хэлний for илэрхийллээс бага зэрэг илүү гэж болно. Арифметик прогресийн
+өсөх дугаараар гүйн давтах(Pascal шиг), эсвэл эхлэх болон төгсгөл, алхамыг 
+өгөн нөхцлөөр зогсон давтаж( C шиг ), Пайтонгийн :keyword:`for` илэрхийлэл нь
+ямар нэг давтамжийн элементээр гүйж  (жагсаалт эсвэл тэмдэгт), давтамжийг
+харуулна. Жишээлбэл :
 
-.. One suggestion was to give a real C example here, but that may only serve to
-   confuse non-C programmers.
 
 ::
 
-   >>> # Measure some strings:
+   >>> # Зарим тэмдэгтийг хэмжих:
    ... a = ['cat', 'window', 'defenestrate']
    >>> for x in a:
    ...     print x, len(x)
@@ -67,11 +65,9 @@ they appear in the sequence.  For example (no pun intended):
    window 6
    defenestrate 12
 
-It is not safe to modify the sequence being iterated over in the loop (this can
-only happen for mutable sequence types, such as lists).  If you need to modify
-the list you are iterating over (for example, to duplicate selected items) you
-must iterate over a copy.  The slice notation makes this particularly
-convenient::
+Жагсаалтаар гүйхэд юу ч өөрчлөхгүй (энэ нь зөвхөн хувирамтгай жагсаалт ,дараалалд тохиолдоно).  Хэрвээ жагсаалтаар гүйнгээ өөрчлөх бол гүйхдээ хуулах 
+хэрэгтэй (жишээлбэл сонгогдсон элементийг хуулбарла).Ингэж хувааснаар илүү 
+амар болдог.::
 
    >>> for x in a[:]: # make a slice copy of the entire list
    ...    if len(x) > 6: a.insert(0, x)
@@ -129,11 +125,8 @@ The :func:`range` Function
 :keyword:`continue` илэрхийлэл нь С хэлнээс удамшсан давталтыг дараагийх руу
 шилжүүлж үргэлжлүүлдэг.
 
-Loop statements may have an ``else`` clause; it is executed when the loop
-terminates through exhaustion of the list (with :keyword:`for`) or when the
-condition becomes false (with :keyword:`while`), but not when the loop is
-terminated by a :keyword:`break` statement.  This is exemplified by the
-following loop, which searches for prime numbers::
+Давталт илэрхийлэл нь  ``else`` нөхцөлтэй байж болно; (:keyword:`for`-той хамт) эсвэл ( :keyword:`while` хамт) нөхцөл худал болвол давталтыг зогсооход ашиглана. , гэвч :keyword:`break` илэрхийлэлгүйгээр зогсохгүй.Давталтын жишээг анхны
+тоог олох жижиг жишээн дээр үзүүлье.::
 
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
@@ -288,8 +281,8 @@ This example, as usual, demonstrates some new Python features:
 More on Defining Functions
 ==========================
 
-It is also possible to define functions with a variable number of arguments.
-There are three forms, which can be combined.
+Функц тодорхойлохдоо ялгаатай аргументууд өгөх боломжтой.
+Ийм гурван хэлбэр байдаг, тэр нь хоорондоо хосолж болно.
 
 
 .. _tut-defaultargs:
@@ -297,9 +290,10 @@ There are three forms, which can be combined.
 Default Argument Values
 -----------------------
 
-The most useful form is to specify a default value for one or more arguments.
-This creates a function that can be called with fewer arguments than it is
-defined to allow.  For example::
+Хамгийн түгээмэл хэрэглэгддэг хэлбэр бол нэг эсвэл олон аргумент дээр анхны
+утгыг нь тусгайлан зааж өгсөн хэлбэр юм.
+Энэ нь функц үүсгэн функцийг дуудахад зарим аргументийг дамжуулахгүй
+байж болно. Жишээлбэл::
 
    def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
        while True:
@@ -313,20 +307,20 @@ defined to allow.  For example::
                raise IOError('refusenik user')
            print complaint
 
-This function can be called in several ways:
+Энэ функцийг олон янзаар дуудаж болно:
 
-* giving only the mandatory argument:
+* зөвхөн зайлшгүй оруулах аргументийг өгөх:
   ``ask_ok('Do you really want to quit?')``
-* giving one of the optional arguments:
+* оруулахгүй ч байж болох аргументийг өгөх:
   ``ask_ok('OK to overwrite the file?', 2)``
-* or even giving all arguments:
+* эсвэл бүх аргументийг дамжуулах:
   ``ask_ok('OK to overwrite the file?', 2, 'Come on, only yes or no!')``
 
-This example also introduces the :keyword:`in` keyword. This tests whether or
-not a sequence contains a certain value.
+Энэ жишээн дээр :keyword:`in` түлхүүрийг үзүүлсэн. Энэ нь жагсаалт дотор
+шалгах утга байгаа эсэхийг шалгана.
 
-The default values are evaluated at the point of function definition in the
-*defining* scope, so that ::
+Анхны утгуудыг функцийн *зарлалтийн* хэсэгт утга дамжуулахгүй бол ямар 
+утгатай байхыг заана.::
 
    i = 5
 
@@ -336,12 +330,12 @@ The default values are evaluated at the point of function definition in the
    i = 6
    f()
 
-will print ``5``.
+``5`` -ыг хэвлэнэ.
 
-**Important warning:**  The default value is evaluated only once. This makes a
-difference when the default is a mutable object such as a list, dictionary, or
-instances of most classes.  For example, the following function accumulates the
-arguments passed to it on subsequent calls::
+**Чухал анхааруулга:**  Анхны утга бол нэг л удаа олгогдоно. Энэ анхны утга нь
+хувирамтгай объект, дараалал, толь, эсвэл классын тохиолдлоос ялгаатай.
+Жишээлбэл, дараах функцэд утга дамжуулан дахин дахин 
+дуудвал нэг л удаа утга олгогдож жагсаалтын элемент нэмэгдэнэ::
 
    def f(a, L=[]):
        L.append(a)
@@ -351,14 +345,14 @@ arguments passed to it on subsequent calls::
    print f(2)
    print f(3)
 
-This will print ::
+Үүнийг хэвлэнэ ::
 
    [1]
    [1, 2]
    [1, 2, 3]
 
-If you don't want the default to be shared between subsequent calls, you can
-write the function like this instead::
+Хэрэв та ийм үр дүн хүсэхгүй дуудах болгонд шинэ утга оноох бол 
+дараах байдалтай бичнэ.::
 
    def f(a, L=None):
        if L is None:
@@ -372,8 +366,8 @@ write the function like this instead::
 Keyword Arguments
 -----------------
 
-Functions can also be called using keyword arguments of the form ``keyword =
-value``.  For instance, the following function::
+Функцийг дуудахдаа форм аргументийг ашиглаж болно ``keyword =
+value``.  Дараах функцийг авч үзье::
 
    def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
        print "-- This parrot wouldn't", action,
@@ -381,24 +375,24 @@ value``.  For instance, the following function::
        print "-- Lovely plumage, the", type
        print "-- It's", state, "!"
 
-could be called in any of the following ways::
+дараах байдлаар функцийг дуудаж болно::
 
    parrot(1000)
    parrot(action = 'VOOOOOM', voltage = 1000000)
    parrot('a thousand', state = 'pushing up the daisies')
    parrot('a million', 'bereft of life', 'jump')
 
-but the following calls would all be invalid::
+гэвч дараах дуудалтууд бүгд буруу::
 
-   parrot()                     # required argument missing
-   parrot(voltage=5.0, 'dead')  # non-keyword argument following keyword
-   parrot(110, voltage=220)     # duplicate value for argument
-   parrot(actor='John Cleese')  # unknown keyword
+   parrot()                     # аргумент дамжуулахыг шаардана
+   parrot(voltage=5.0, 'dead')  # түлхүүргүй аргументад түлхүүр хэрэглэсэн
+   parrot(110, voltage=220)     # аргументийн утгыг давхардуулсан
+   parrot(actor='John Cleese')  # буруу түлхүүр
 
-In general, an argument list must have any positional arguments followed by any
-keyword arguments, where the keywords must be chosen from the formal parameter
-names.  It's not important whether a formal parameter has a default value or
-not.  No argument may receive a value more than once --- formal parameter names
+Ерөнхийдөө, аргументийн жагсаалт нь ямар нэг байрлалын аргументийг араас 
+түлхүүр аргумент байрлана, түлхүүр аргументууд өгөхөд тодорхойлсон 
+параметруудаас хайдаг. Үүнд тодорхойлсон параметрууд анхны утгатай байх эсвэл
+байхгүй нь нээх чухал биш. No argument may receive a value more than once --- formal parameter names
 corresponding to positional arguments cannot be used as keywords in the same
 calls. Here's an example that fails due to this restriction::
 
@@ -427,7 +421,7 @@ function like this::
        keys.sort()
        for kw in keys: print kw, ":", keywords[kw]
 
-It could be called like this::
+Үүн шиг дуудаж болно::
 
    cheeseshop("Limburger", "It's very runny, sir.",
               "It's really very, VERY runny, sir.",
@@ -435,7 +429,7 @@ It could be called like this::
               client="John Cleese",
               sketch="Cheese Shop Sketch")
 
-and of course it would print::
+мэдээж дараахийг хэвлэнэ::
 
    -- Do you have any Limburger ?
    -- I'm sorry, we're all out of Limburger
