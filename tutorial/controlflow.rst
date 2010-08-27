@@ -469,12 +469,12 @@ Arbitrary Argument Lists
 Unpacking Argument Lists
 ------------------------
 
-The reverse situation occurs when the arguments are already in a list or tuple
-but need to be unpacked for a function call requiring separate positional
-arguments.  For instance, the built-in :func:`range` function expects separate
-*start* and *stop* arguments.  If they are not available separately, write the
-function call with the  ``*``\ -operator to unpack the arguments out of a list
-or tuple::
+Аргументууд аль хэдийн жагсаалт эсвэл тапл болсон байхад урвуу байрлал 
+тохиолдоно, гэвч функцийг дуудахдаа байрлалын аргументуудыг задлаагүй 
+байх хэрэгтэй. Зарим тохиолдолд ,  :func:`range` функц *start* болон
+*stop* аргументуудыг салгахыг эсэргүүцдэг.Хэрвээ аргументууд нь саланги бол, 
+функц бичихдээ ``*``\ -оператор ашиглан жагсаалт эсвэл тапл болгон 
+нийлүүлнэ.::
 
    >>> range(3, 6)             # normal call with separate arguments
    [3, 4, 5]
@@ -485,8 +485,8 @@ or tuple::
 .. index::
   statement: **
 
-In the same fashion, dictionaries can deliver keyword arguments with the ``**``\
--operator::
+Үүнтэй адилаар түлхүүр аргументуудыг ``**``\
+- оператор ашиглан тольнууд болгоно::
 
    >>> def parrot(voltage, state='a stiff', action='voom'):
    ...     print "-- This parrot wouldn't", action,
