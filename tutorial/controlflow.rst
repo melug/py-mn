@@ -391,10 +391,11 @@ value``.  Дараах функцийг авч үзье::
 
 Ерөнхийдөө, аргументийн жагсаалт нь ямар нэг байрлалын аргументийг араас 
 түлхүүр аргумент байрлана, түлхүүр аргументууд өгөхөд тодорхойлсон 
-параметруудаас хайдаг. Үүнд тодорхойлсон параметрууд анхны утгатай байх эсвэл
-байхгүй нь нээх чухал биш. No argument may receive a value more than once --- formal parameter names
-corresponding to positional arguments cannot be used as keywords in the same
-calls. Here's an example that fails due to this restriction::
+параметруудаас хайдаг. Үүнд тодорхойлсон параметрууд анхны утгатай байх 
+эсвэл байхгүй нь нээх чухал биш. Ямар ч аргументгүй нэгээс олон удаа утга
+ирвэл хэвжүүлсэн параметр нэрүүд нь байрлалын аргументийн түлхүүр шиг 
+байрлалаар нь дуудаж чадахгүй. Энэ жишээн саяны нөхцөлөөр алдаа болснийг 
+харуулав::
 
    >>> def function(a):
    ...     pass
@@ -404,13 +405,13 @@ calls. Here's an example that fails due to this restriction::
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-When a final formal parameter of the form ``**name`` is present, it receives a
-dictionary (see :ref:`typesmapping`) containing all keyword arguments except for
-those corresponding to a formal parameter.  This may be combined with a formal
-parameter of the form ``*name`` (described in the next subsection) which
-receives a tuple containing the positional arguments beyond the formal parameter
-list.  (``*name`` must occur before ``**name``.) For example, if we define a
-function like this::
+ Сүүлийн хэвжүүлсэн загвар дээр ``**name`` нэр заасан, энэ нь бүх түлхүүр 
+ аргументийг багтаасан тольноос ирдэг(илүүг :ref:`typesmapping`).
+ Энэ нь ``*name`` формын параметртэй нийлсэн байж болно.
+(дараагийн дэд хэсэгт тайлбарласан) тэр нь байрлалын аргументийн оронд
+хэвжүүлсэн параметрийн тапл жагсаалтын агуулсан байдаг.
+(``*name`` энэн шиг байх ёстой ``**name``.) Жишээ, Хэрэв бид дараах
+функцийг бичсэн бол::
 
    def cheeseshop(kind, *arguments, **keywords):
        print "-- Do you have any", kind, "?"
@@ -440,9 +441,10 @@ function like this::
    shopkeeper : Michael Palin
    sketch : Cheese Shop Sketch
 
-Note that the :meth:`sort` method of the list of keyword argument names is
-called before printing the contents of the ``keywords`` dictionary; if this is
-not done, the order in which the arguments are printed is undefined.
+Note that the :meth:`sort` метод нь түлхүүр аргументуудийн нэрийг 
+хэвлэхээсээ өмнө ``keywords`` толины агуулгыг эрэмбэлнэ; Хэрэв 
+дуусаагүй байхад аргументууд хэвлэгдсэн бол энэ нь тодорхологдоогүй
+гэсэн үг.
 
 
 .. _tut-arbitraryargs:
@@ -453,10 +455,10 @@ Arbitrary Argument Lists
 .. index::
   statement: *
 
-Finally, the least frequently used option is to specify that a function can be
-called with an arbitrary number of arguments.  These arguments will be wrapped
-up in a tuple (see :ref:`tut-tuples`).  Before the variable number of arguments,
-zero or more normal arguments may occur. ::
+Эцэст нь хэлэхэд, бага давтамжтай хэрэглэгдэх функц дээр өөрийнхөө хүссэн 
+хэмжээний аргументийг дамжуулж дуудаж болно.Эдгээр аргументууд нь нийлээд 
+таплд байх ёстой(илүүг :ref:`tut-tuples`).  Олон тооны аргумент өгж болно,
+өгөхгүй ч байж болно эсвэл энгийн аргумент өгж болно. ::
 
    def write_multiple_items(file, separator, *args):
        file.write(separator.join(args))
