@@ -14,6 +14,7 @@ Contents:
    python/intro
    python/install/index
    python/data_types/index
+   tutorial/introduction_mn
 
 Indices and tables
 ==================
