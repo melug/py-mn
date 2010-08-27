@@ -4,8 +4,9 @@
 More Control Flow Tools
 ***********************
 
-Besides the :keyword:`while` statement just introduced, Python knows the usual
-control flow statements known from other languages, with some twists.
+Өөрөөр хэлбэл :keyword:`while` илэрхийлэл бол Пайтон хэл болон
+өөр хэлнүүдэд байдаг урсгал удирдах илэрхийлэл юм.
+
 
 
 .. _tut-if:
@@ -13,28 +14,27 @@ control flow statements known from other languages, with some twists.
 :keyword:`if` Statements
 ========================
 
-Perhaps the most well-known statement type is the :keyword:`if` statement.  For
-example::
+Голчлон хэрэглэгддэг илэрхийллүүдийн нэг бол :keyword:`if` илэрхийлэл юм.  Жишээ::
 
    >>> x = int(raw_input("Please enter an integer: "))
-   Please enter an integer: 42
+   Бүхэл тоо оруул: 42
    >>> if x < 0:
    ...      x = 0
-   ...      print 'Negative changed to zero'
+   ...      print 'Сөрөг тоо тэгээр солигдлоо'
    ... elif x == 0:
-   ...      print 'Zero'
+   ...      print 'Тэг'
    ... elif x == 1:
-   ...      print 'Single'
+   ...      print 'Нэг'
    ... else:
-   ...      print 'More'
+   ...      print 'Нэгээс их'
    ...
    More
 
-There can be zero or more :keyword:`elif` parts, and the :keyword:`else` part is
-optional.  The keyword ':keyword:`elif`' is short for 'else if', and is useful
-to avoid excessive indentation.  An  :keyword:`if` ... :keyword:`elif` ...
-:keyword:`elif` ... sequence is a substitute for the ``switch`` or
-``case`` statements found in other languages.
+Таны оруулсан тоо тэг болон нэг байгаа эсэхийг :keyword:`elif` түлхүүрээр,бусад тохиолдолд :keyword:`else` түлхүүрээр
+шалгаж байна.':keyword:`elif`' түлхүүр үг бол 'else if' гэдгийг товчлон, илүү
+бичихэд амархан болгосон. :keyword:`if` ... :keyword:`elif` ...
+:keyword:`elif` ... түлхүүрийг урт дараалсан нөхцөл шалгахад зарим хэлэнд
+``switch`` болон ``case``  илэрхийлэл байдаг.
 
 
 .. _tut-for:
@@ -46,8 +46,8 @@ to avoid excessive indentation.  An  :keyword:`if` ... :keyword:`elif` ...
    statement: for
    statement: for
 
-The :keyword:`for` statement in Python differs a bit from what you may be used
-to in C or Pascal.  Rather than always iterating over an arithmetic progression
+:keyword:`for` илэрхийлэл нь Пайтон хэлэнд бидний өмнө хэрэглэж заншсан С болон 
+Паскал хэлний for илэрхийллээс бага зэрэг илүү гэж болно. Rather than always iterating over an arithmetic progression
 of numbers (like in Pascal), or giving the user the ability to define both the
 iteration step and halting condition (as C), Python's :keyword:`for` statement
 iterates over the items of any sequence (a list or a string), in the order that
@@ -85,17 +85,15 @@ convenient::
 The :func:`range` Function
 ==========================
 
-If you do need to iterate over a sequence of numbers, the built-in function
-:func:`range` comes in handy.  It generates lists containing arithmetic
-progressions::
+Хэрэв та тоо өгөн түүгээр дараал үүсгэх бол :func:`range` өгөгдсөн тоогоор 
+дараалал үүсгэнэ.  Дараалал үүсгэхдээ арифметик прогрессоор үүсгэнэ::
 
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-The given end point is never part of the generated list; ``range(10)`` generates
-a list of 10 values, the legal indices for items of a sequence of length 10.  It
-is possible to let the range start at another number, or to specify a different
-increment (even negative; sometimes this is called the 'step')::
+Дараалал үүсгэхдээ төгсгөлийн цэгийг өгнө; ``range(10)`` нь 10 утгатай жагсаалт
+үүсгэн, 10 урттай индеклэсэн дараалал болгов. Мөн дараалал ямар тооноос эхлэх 
+болон ямар утгаар өсөхийг ч зааж өгч болно.(эерэг тоо байх ба заримдаа алхам ч гэж нэрлэдэг)::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -104,8 +102,8 @@ increment (even negative; sometimes this is called the 'step')::
    >>> range(-10, -100, -30)
    [-10, -40, -70]
 
-To iterate over the indices of a sequence, you can combine :func:`range` and
-:func:`len` as follows::
+Дарааллын элементээр гүйн элементийг индеклэхдээ  :func:`range` болон 
+:func:`len` функцийн хослолыг хэрэглэхийг дор үзүүлэв::
 
    >>> a = ['Mary', 'had', 'a', 'little', 'lamb']
    >>> for i in range(len(a)):
@@ -117,20 +115,19 @@ To iterate over the indices of a sequence, you can combine :func:`range` and
    3 little
    4 lamb
 
-In most such cases, however, it is convenient to use the :func:`enumerate`
-function, see :ref:`tut-loopidioms`.
-
+Ихэнд тохиолдолд дээрхийг хэрэглэдэг ч :func:`enumerate` функцийг хэрэглэх нь
+тохиромжтой. үз :ref:`tut-loopidioms`.
 
 .. _tut-break:
 
 :keyword:`break` and :keyword:`continue` Statements, and :keyword:`else` Clauses on Loops
 =========================================================================================
 
-The :keyword:`break` statement, like in C, breaks out of the smallest enclosing
-:keyword:`for` or :keyword:`while` loop.
+:keyword:`break` илэрхийлэл нь яг С хэлэн байдаг шиг :keyword:`for` болон 
+:keyword:`while` давталтанд дотор зогсоох үйлдлийг хийдэг.
 
-The :keyword:`continue` statement, also borrowed from C, continues with the next
-iteration of the loop.
+:keyword:`continue` илэрхийлэл нь С хэлнээс удамшсан давталтыг дараагийх руу
+шилжүүлж үргэлжлүүлдэг.
 
 Loop statements may have an ``else`` clause; it is executed when the loop
 terminates through exhaustion of the list (with :keyword:`for`) or when the
@@ -162,22 +159,21 @@ following loop, which searches for prime numbers::
 :keyword:`pass` Statements
 ==========================
 
-The :keyword:`pass` statement does nothing. It can be used when a statement is
-required syntactically but the program requires no action. For example::
+The :keyword:`pass` илэрхийлэл нь юу ч хийхгүй. Тодорхой шаардлагаар ямар ч үйлдэл хийхгүй зөвхөн синтаксийн шаардлагаар юм бичих тохиолдолд хэрэглэж болно.Жишээлбэл::
 
    >>> while True:
    ...     pass  # Busy-wait for keyboard interrupt (Ctrl+C)
    ...
 
-This is commonly used for creating minimal classes::
+Үүнийг жижиг класс үүсгэхэд нийтлэг хэрэглэдэг::
 
    >>> class MyEmptyClass:
    ...     pass
    ...
 
-Another place :keyword:`pass` can be used is as a place-holder for a function or
-conditional body when you are working on new code, allowing you to keep thinking
-at a more abstract level.  The :keyword:`pass` is silently ignored::
+:keyword:`pass` илэрхийллийг хэрэглэх өөр нэг хувилбар бол хийсвэр функц эсвэл
+нөхцөлт бие-ийг шинээр бичин хийсвэрлэх түвшинд бичиж байгаа үед ашигладаг. 
+Үүнд :keyword:`pass` бол шууд зөвшөөрөгдөнө.::
 
    >>> def initlog(*args):
    ...     pass   # Remember to implement this!
@@ -185,11 +181,10 @@ at a more abstract level.  The :keyword:`pass` is silently ignored::
 
 .. _tut-functions:
 
-Defining Functions
-==================
+Функц зарлах
+============
 
-We can create a function that writes the Fibonacci series to an arbitrary
-boundary::
+Бид Фибаночийн дараалал үүсгэх жишээг авч функц үүсгэе::
 
    >>> def fib(n):    # write Fibonacci series up to n
    ...     """Print a Fibonacci series up to n."""
@@ -207,26 +202,23 @@ boundary::
    single: docstrings
    single: strings, documentation
 
-The keyword :keyword:`def` introduces a function *definition*.  It must be
-followed by the function name and the parenthesized list of formal parameters.
-The statements that form the body of the function start at the next line, and
-must be indented.
+:keyword:`def` түлхүүр үгээр функцыг *тодорхойлолно*.  Үүний араас функцийн нэр
+байх ба хаалтан дотор параметруудын жагсаалтыг бичиж өгч болно.
+Энэ илэрхийллийн дараагийн мөрөөс эхлэн функцын бие байх бөгөөд мөрүүд нэг 
+зэрэгцсэн байх ёстой.(must be indented).
 
-The first statement of the function body can optionally be a string literal;
-this string literal is the function's documentation string, or :dfn:`docstring`.
-(More about docstrings can be found in the section :ref:`tut-docstrings`.)
-There are tools which use docstrings to automatically produce online or printed
-documentation, or to let the user interactively browse through code; it's good
-practice to include docstrings in code that you write, so make a habit of it.
+Функцын биеийн эхний мөр нь тэмдэгт тайлбар байж болно;
+энэ тэмдэгт нь функцын баримтжуулалтын тэмдэгт, эсвэл :dfn:`docstring` 
+байж болно.
+(docstrings-ийн тухай дэлгэрэнгүй мэдээллийг:ref:`tut-docstrings`-ээс үзэж болно.)
+Зарим хэрэгслүүд docstring-ийг ашиглан онлайн болон хэвлэмэл баримтыг
+автоматаар үүсгэдэг, эсвэл хэрэглэгч түүгээр эх кодын ажиллагааг мэднэ; 
+docstring ашиглан код бичснээр өөртөө маш сайн дадлага туршлагатай болно. 
 
-The *execution* of a function introduces a new symbol table used for the local
-variables of the function.  More precisely, all variable assignments in a
-function store the value in the local symbol table; whereas variable references
-first look in the local symbol table, then in the local symbol tables of
-enclosing functions, then in the global symbol table, and finally in the table
-of built-in names. Thus, global variables cannot be directly assigned a value
-within a function (unless named in a :keyword:`global` statement), although they
-may be referenced.
+Функцын *ажиллагаа*  нь функц дотор локал хувьсагч үсэг ашиглан 
+зарлаж эхэлсэн байна. Өөрөөр хэлбэл функцын бүх утга олголт өөрийн локаль 
+тэмдэгтийн хүснэгтээс авч ашигласан байна; Глобаль хувьсагч функцээс шууд утга 
+олгож болохгүй бөгөөд тусгай функц ашигладаг(:keyword:`global` илэрхийллээр).
 
 The actual parameters (arguments) to a function call are introduced in the local
 symbol table of the called function when it is called; thus, arguments are
@@ -275,8 +267,8 @@ Fibonacci series, instead of printing it::
 
 This example, as usual, demonstrates some new Python features:
 
-* The :keyword:`return` statement returns with a value from a function.
-  :keyword:`return` without an expression argument returns ``None``. Falling off
+* :keyword:`return` илэрхийлэл нь функцээс утга буцаадаг.
+  :keyword:`return` илэрхийллээр ``None`` утга буцаана. Falling off
   the end of a function also returns ``None``.
 
 * The statement ``result.append(a)`` calls a *method* of the list object
@@ -593,45 +585,43 @@ Intermezzo: Coding Style
 .. sectionauthor:: Georg Brandl <georg@python.org>
 .. index:: pair: coding; style
 
-Now that you are about to write longer, more complex pieces of Python, it is a
-good time to talk about *coding style*.  Most languages can be written (or more
-concise, *formatted*) in different styles; some are more readable than others.
-Making it easy for others to read your code is always a good idea, and adopting
-a nice coding style helps tremendously for that.
+Бид Пайтоны тухай маш олон зүйлийг бичлээ ,харин одоо бид *код бичих загвар* -ийн
+талаар ярилцах цаг болсон. Ихэнх хэлнүүд янз бүрийн (илүү товчилсон, *formatted*) загвараар бичигддэг; зарим нь илүү их бичиглэлтэй байдаг.
+Код бичихдээ уншихад амархан байхаар бичих нь тохиромжтой байдаг, ба  
+сайн кодын загвар сонгож авах нь таны хамгийн том амжилт байдаг.
 
-For Python, :pep:`8` has emerged as the style guide that most projects adhere to;
-it promotes a very readable and eye-pleasing coding style.  Every Python
-developer should read it at some point; here are the most important points
-extracted for you:
+Пайтонд зориулж, :pep:`8` загварыг хэлэлцэн ихэнх төсөлд ашигладаг;
+энэ нь уншихад маш эвтэйхэн болон нүдэнд тустай кодын загвар юм. 
+Пайтан хөгжүүлэгч болгон ямар ч цэгээс уншсан чухал зүйл нь хаана байгааг
+мэдэж болно:
 
-* Use 4-space indentation, and no tabs.
+* 4 зай зэрэгцүүлэлт ашиглах болон ямар ч таб авахгүй.
 
-  4 spaces are a good compromise between small indentation (allows greater
-  nesting depth) and large indentation (easier to read).  Tabs introduce
-  confusion, and are best left out.
+  4 хоосон зай маш тохирсон жижиг зэрэгцүүлэлт (үргэлжилсэн гүнг зөвшөөрдөг) 
+  болон том зэрэгцүүлэлт (уншихад амар).  Табууд нь төөрөлдөл үүсгэдэг.
 
-* Wrap lines so that they don't exceed 79 characters.
+* 79 тэмдэгтээс хэтрэхээс өмнө шинэ мөр ав.
 
-  This helps users with small displays and makes it possible to have several
-  code files side-by-side on larger displays.
+  Хэрэглэгчид дэлгэцний том жижгээс хамаарахгүй эх кодыг мөр мөрөөр харуулахад
+  хялбар байдаг.
 
-* Use blank lines to separate functions and classes, and larger blocks of
-  code inside functions.
+* Функц класс болон их хэмжээний код, нэг утга илэрхийлэх блокуудыг хоосон
+  мөрөөр заагла.
 
-* When possible, put comments on a line of their own.
+* Боломжтой бүх мөр дээр тайлбар хий.
 
-* Use docstrings.
+* docstrings ашигла.
 
-* Use spaces around operators and after commas, but not directly inside
-  bracketing constructs: ``a = f(1, 2) + g(3, 4)``.
+* Таслал болон операторуудын ард хоосон зай ашигла, гэвч хаалттай байгуулагч
+  хэрэглэж болохгүй: ``a = f(1, 2) + g(3, 4)``.
 
-* Name your classes and functions consistently; the convention is to use
-  ``CamelCase`` for classes and ``lower_case_with_underscores`` for functions
-  and methods.  Always use ``self`` as the name for the first method argument
-  (see :ref:`tut-firstclasses` for more on classes and methods).
+* Класс болон функцын нэрээ тогтвортойгоор нэрлэ; Классуудад ``CamelCase`` 
+  стандарт болон функц методууддаа ``lower_case_with_underscores`` стандарт
+  ашигла. Методын эхний аргумент байнга  ``self`` аргумент ашигла.
+  (Класс методын дэлгэрэнгүйг :ref:`tut-firstclasses`-ээс үз ).
 
-* Don't use fancy encodings if your code is meant to be used in international
-  environments.  Plain ASCII works best in any case.
+* Хэлний нэмэгдэл орчин ашиглан олон улсын энкод кодондоо ашиглах хэрэггүй.
+  Энгийн ASCII works best in any case.
 
 
 .. rubric:: Footnotes
