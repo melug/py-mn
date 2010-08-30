@@ -98,17 +98,12 @@
 ----------------
 
 Алдаа гарахад хэлмэрч алдааны мэдээ болон функцийн замыг харуулдаг.
-Харилцуурын горимд дараа нь үндсэн харилцуурт шилжих ба оролт файлаас ирсэн бол 
-
-When an error occurs, the interpreter prints an error message and a stack trace.
-In interactive mode, it then returns to the primary prompt; when input came from
-a file, it exits with a nonzero exit status after printing the stack trace.
-(Exceptions handled by an :keyword:`except` clause in a :keyword:`try` statement
-are not errors in this context.)  Some errors are unconditionally fatal and
-cause an exit with a nonzero exit; this applies to internal inconsistencies and
-some cases of running out of memory.  All error messages are written to the
-standard error stream; normal output from executed commands is written to
-standard output.
+Харилцуурын горимд бол дараа нь үндсэн харилцуурт шилжих ба хэрэв оролт файлаас 
+ирсэн бол функцийн замыг хэвлээд харилцуурыг салгадаг. (:keyword:`try` илэрхийллийн
+:keyword:`except` хэсэг дахь онцгой тохиолдлыг энэ үед алдаа гэж үзэхгүй.) Зарим
+алдаа зайлшгүй бөгөөд харилцуурыг салгадаг; энэ дотоод харшлал, санах ой дүүрэлтийн
+зарим тохиолдол хамаарна. Алдааны бүх мэдээ алдааны стандарт урсгалд бичигддэг,
+харин гүйцэтгэгдсэн тушаалаас гарах энгийн гаралт стандарт гаралтанд бичигддэг.
 
 Тасалдуулагч тэмдэгтийг (ихэвчлэн Control-C эсвэл DEL) үндсэн эсвэл хоёрдогч
 харилцуурт оруулснаар оролтыг цуцалж үндсэн харилцуурт буцдаг. [#]_
