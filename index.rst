@@ -31,11 +31,6 @@
    :maxdepth: 1
 
    tutorial/index
-   rest
-   python/intro
-   python/install/index
-   python/data_types/index
-   tutorial/introduction_mn
 
 Indices and tables
 ==================
