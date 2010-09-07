@@ -4,26 +4,27 @@
 Modules
 *******
 
-If you quit from the Python interpreter and enter it again, the definitions you
-have made (functions and variables) are lost. Therefore, if you want to write a
-somewhat longer program, you are better off using a text editor to prepare the
-input for the interpreter and running it with that file as input instead.  This
-is known as creating a *script*.  As your program gets longer, you may want to
-split it into several files for easier maintenance.  You may also want to use a
-handy function that you've written in several programs without copying its
-definition into each program.
+Хэрвээ та пайтон хэлмэрчээс(interpreter)гараад буцаад ороход таны 
+тодорхойлолтууд(функцууд болон хувьсагчууд) арчигдана. Тийм учраас,
+Хэрэв та ямар нэг багагүй хэмжээтэй програм бичих бол, өөрийн сайн 
+эзэмшсэн текст засварлагч дээрээ кодоо бичих бөгөөд тэр бичсэн кодын
+файлаа хэлмэрч руу оролт болгон дамжуулах нь гараас код бичихээс илүү
+найдвартай юм.Үүнийг *бичиглэл* үүсгэх гэж хэлнэ.Таны програм хэтэрхий
+нүсэр болон, засвар үйлчилгээ авахад хялбар болгох зорилгоор та олон 
+файлуудад салгаж болно.  Та магадгүй байнга хэрэглэдэг функцээ програм
+бүрд дахин дахин хуулж тавилгүйгээр эвтэйхэн болгохыг хүсэж болно.
 
-To support this, Python has a way to put definitions in a file and use them in a
-script or in an interactive instance of the interpreter. Such a file is called a
-*module*; definitions from a module can be *imported* into other modules or into
-the *main* module (the collection of variables that you have access to in a
-script executed at the top level and in calculator mode).
+Иймэрхүү асуудлуудыг шийдэхийн тулд, Пайтон нь файлд тодорхойлолтууд нэмэн
+түүнийгээ скрипт болгон ашиглах эсвэл харилцуурын тохиолдол болгодог. Файлыг
+*module* болгон дууддаг; тодорхойлолтуудыг үндсэн болон бусад туслах модулиудаас
+*импортлож* чаддаг.(хувьсагчдын цуглуулга нь дээд түвшний скрипт гүйцэтгэхэд
+болон тооцоолох горимд хийх боломж олгодог).
 
-A module is a file containing Python definitions and statements.  The file name
-is the module name with the suffix :file:`.py` appended.  Within a module, the
-module's name (as a string) is available as the value of the global variable
-``__name__``.  For instance, use your favorite text editor to create a file
-called :file:`fibo.py` in the current directory with the following contents::
+Модуль бол пайтон тодорхойлолт болон илэрхийллийг агуулдаг. Файлын нэр нь 
+модулийн нэрийн араас :file:`.py` дагавар залгагддаг. Модулын дотор модулийн
+нэрийг илэрхийлдэг(тэмдэгтээр) ``__name__`` глобаль хувьсагч байдаг. Жишээ нь 
+та өөрийн хэрэглэдэг текст засварлагч ашиглан дараах кодыг өөрийн ажиллаж байгаа
+директорт :file:`fibo.py` нэртэйгээр үүсгэн хадгал::
 
    # Fibonacci numbers module
 
@@ -41,14 +42,13 @@ called :file:`fibo.py` in the current directory with the following contents::
            a, b = b, a+b
        return result
 
-Now enter the Python interpreter and import this module with the following
-command::
+Одоо Пайтан хэлмэрч руу орон дараах командаар энэ модулыг импортлоно.::
 
    >>> import fibo
 
-This does not enter the names of the functions defined in ``fibo``  directly in
-the current symbol table; it only enters the module name ``fibo`` there. Using
-the module name you can access the functions::
+Энд ``fibo`` дотор тодорхойлсон функцийн тодорхойлолтын нэрийг бичээгүй ч гэсэн
+тэмдэгтийн хүснэгтээр хайдаг, зөвхөн ``fibo`` модулын нэрээр хандана. Модулын
+нэрээр хандан функцийг дуудахыг дор үзүүлэв::
 
    >>> fibo.fib(1000)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
@@ -57,7 +57,7 @@ the module name you can access the functions::
    >>> fibo.__name__
    'fibo'
 
-If you intend to use a function often you can assign it to a local name::
+Хэрэв чи функцээ олон газар ашиглах бол локал нэр оноож болно::
 
    >>> fib = fibo.fib
    >>> fib(500)
@@ -120,32 +120,28 @@ use it to save typing in interactive sessions.
 Executing modules as scripts
 ----------------------------
 
-When you run a Python module with ::
+Пайтон модулийг ажиллуулахдаа ::
 
    python fibo.py <arguments>
 
-the code in the module will be executed, just as if you imported it, but with
-the ``__name__`` set to ``"__main__"``.  That means that by adding this code at
-the end of your module::
+ингэснээр таны хүссэн кодын модуль ажиллана , гэвч бид 
+``__name__`` -д ``"__main__"`` гэж тохируулж өгнө. Үүнийг 
+ажиллуулахын тулд дараах кодыг мөрийн төгсгөлд нэмж болно::
 
    if __name__ == "__main__":
        import sys
        fib(int(sys.argv[1]))
 
-you can make the file usable as a script as well as an importable module,
-because the code that parses the command line only runs if the module is
-executed as the "main" file::
+ингэснээр та илүү хэрэглэхэд хялбар мөн импортлогдох боломжтой бөгөөд,
+командийн мөрөөс үндсэн файлыг ажиллуулахад ч гэсэн ямар ч асуудалгүй::
 
    $ python fibo.py 50
    1 1 2 3 5 8 13 21 34
 
-If the module is imported, the code is not run::
+Кодыг импортлоход код ажиллахгүй::
 
    >>> import fibo
    >>>
-
-This is often used either to provide a convenient user interface to a module, or
-for testing purposes (running the module as a script executes a test suite).
 
 
 .. _tut-searchpath:
