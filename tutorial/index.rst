@@ -1,44 +1,23 @@
 .. _tutorial-index:
 
 ######################
-  The Python Tutorial
+Пайтон сурах бичиг
 ######################
 
 :Release: |version|
 :Date: |today|
 
-Python is an easy to learn, powerful programming language. It has efficient
-high-level data structures and a simple but effective approach to
-object-oriented programming. Python's elegant syntax and dynamic typing,
-together with its interpreted nature, make it an ideal language for scripting
-and rapid application development in many areas on most platforms.
+Пайтон нь сурахад хялбар, басхүү хүчирхэг програмчлалын хэл юм. Мөн үр дүнтэй өндөр түвшний өгөгдлийн бүтэц болон объект хандалтат програмчлалын энгийн бөгөөд үр дүнтэй арга ажиллагаатай болно. Пайтоны гоёмсон бичиглэл болон динамик төрөлжүүлэлт, интерпретер шинж нь түүнийг дийлэнх платформуудад зориулсан олон төрлийн скрипт болон програм хангамжийн хурдтай хөгжүүлэлтэд нэн тохиромжтой хэл болгож өгдөг.
 
-The Python interpreter and the extensive standard library are freely available
-in source or binary form for all major platforms from the Python Web site,
-http://www.python.org/, and may be freely distributed. The same site also
-contains distributions of and pointers to many free third party Python modules,
-programs and tools, and additional documentation.
+Пайтоны интерпретер болон олон тооны стандарт санг эх эсвэл томоохон платформуудад зориулсан хоёртын хэлбэрээр Пайтоны вэб сайтаас (http://www.python.org) чөлөөтэй авч бас чөлөөтэй тарааж болно. Энэ сайт нь гуравдагч талын Пайтоны модулиуд, програмууд, багажууд болон нэмэлт бичиг баримтуудын холбоосуудыг агуулж байдаг. 
 
-The Python interpreter is easily extended with new functions and data types
-implemented in C or C++ (or other languages callable from C). Python is also
-suitable as an extension language for customizable applications.
+Пайтоны интерпретерийг Си эсвэл Cи++ хэл дээр бичигдсэн шинэ функц болон өгөгдлийн төрлөөр хялбар өргөтгөх боломжтой. Пайтоныг өөрчлөх боломжтой програмын өргөтгөлийн хэлээр ашиглахад тохиромжтой.
 
-This tutorial introduces the reader informally to the basic concepts and
-features of the Python language and system. It helps to have a Python
-interpreter handy for hands-on experience, but all examples are self-contained,
-so the tutorial can be read off-line as well.
+Энэ сурах бичиг нь уншигчид Пайтон хэл болон түүний системийн үндсэн ойлголт, боломжуудыг энгийнээр танилцуулах юм. Сурах бичиг нь Пайтон интерпретерийг эзэмшихэд туслана, гэхдээ бүр жишээнүүд дангаар ашиглагдах боломжтой тул сурах бичгийг хаанаас ч уншиж болно.
 
-For a description of standard objects and modules, see :ref:`library-index`.
-:ref:`reference-index` gives a more formal definition of the language.  To write
-extensions in C or C++, read :ref:`extending-index` and
-:ref:`c-api-index`. There are also several books covering Python in depth.
+Стандарт объект болон модулиудын талаар үзэхийг хүсвэл :ref:`library-index` үзнэ үү. :ref:`library-index`-с хэлний талаар илүү албан тодорхойлолтуудыг авах боломжтой. Си Си++ дээр өргөтгөл бичихийн тулд :ref:`extending-index` болон :ref:`c-api-index` уншина уу. Эдгээрээс гадна Пайтон хэлний талаар цөөнгүй ном бичигдсэн байгаа.
 
-This tutorial does not attempt to be comprehensive and cover every single
-feature, or even every commonly used feature. Instead, it introduces many of
-Python's most noteworthy features, and will give you a good idea of the
-language's flavor and style. After reading it, you will be able to read and
-write Python modules and programs, and you will be ready to learn more about the
-various Python library modules described in :ref:`library-index`.
+Энэхүү сурах бичиг нь боломж нэг бүрийг эсвэл түгээмэл хэрэглэгддэг боломжуудыг бүгдийг өгүүлж, бүрэн хэмжээний байхыг зориогүй. Харин Пайтоны хамгийн чухал боломжуудыг танилцуулахаас гадна танд хэлний амт, загварын талаар сайтар ойлголт өгөх болно. Үүнийг уншсаны дараагаар та Пайтон модуль болон програм унших, бичих чадвартай болох бөгөөд :ref:`library-index`-д танилцуулсан Пайтоны сан дахь төрөл бүрийн модулиудын талаар цааш суралцахад бэлэн болсон байх болно.
 
 The :ref:`glossary` is also worth going through.
 

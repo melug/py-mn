@@ -1,77 +1,75 @@
 .. _tut-informal:
 
-**********************************
-An Informal Introduction to Python
-**********************************
+***********************************
+Пайтон хэлний танилцуулга
+***********************************
 
-In the following examples, input and output are distinguished by the presence or
-absence of prompts (``>>>`` and ``...``): to repeat the example, you must type
-everything after the prompt, when the prompt appears; lines that do not begin
-with a prompt are output from the interpreter. Note that a secondary prompt on a
-line by itself in an example means you must type a blank line; this is used to
-end a multi-line command.
+Доорх жишээнүүдэд програмийн оролт гаралт нь мөрийн эхлэлийн тэмдэгтүүдээрээ
+ялгарна (``>>>`` ба ``...``): Жишээн дээрхийг туршиж үзэхийн тулд эдгээр тэмдэгтүүдээр
+эхэлж байгаа текстийг дууриаж бичих ба эдгээр тэмдэгтүүдээр эхлээгүй байвал
+энэ нь программийн гаралт юм. Гурван цэгээр эхэлж байгаа нь олон мөртэй
+код бичихэд гарч ирдэг. Харин гурван багын тэмдгээр эхэлж байвал тэнд код бичиж
+болно таныг бичихийг хүлээж байна.
 
-Many of the examples in this manual, even those entered at the interactive
-prompt, include comments.  Comments in Python start with the hash character,
-``#``, and extend to the end of the physical line.  A comment may appear at the
-start of a line or following whitespace or code, but not within a string
-literal.  A hash character within a string literal is just a hash character.
-Since comments are to clarify code and are not interpreted by Python, they may
-be omitted when typing in examples.
+Пайтон кодны тайлбар нь ``#`` чагт тэмдгээр эхэлж мөрний төгсгөл хүртэлх нь
+тайлбар болдог. Гарын авлагын маш олон жишээнүүд, тэр дундаа харилцуур цонхтой ажилласан
+жишээнүүд дээр хүртэл тайлбар хийж тэмдэглэсэн. Чагт тэмдгээс урагш тэмдэгтүүд нь
+тайлбар болохгүй ба код байвал ажиллана. Харин тэмдэгт мөрийн зарлагаан доторх
+чагт нь тайлбар болохгүй.
 
-Some examples::
+Жишээ нь::
 
-   # this is the first comment
-   SPAM = 1                 # and this is the second comment
-                            # ... and now a third!
-   STRING = "# This is not a comment."
+   # Энэ эхний тайлбар
+   SPAM = 1                 # харин энэ хоёр дах нь
+                            # ... гуравдах 
+   STRING = "# Энэ тайлбар биш, тэмдэгт мөрийн зарлагаа."
 
 
 .. _tut-calculator:
 
-Using Python as a Calculator
-============================
+Тооны машины зориулалтаар ашиглах
+=================================
 
-Let's try some simple Python commands.  Start the interpreter and wait for the
-primary prompt, ``>>>``.  (It shouldn't take long.)
+Харилцуур цонхоо эхлүүл, ``>>>`` тэмдэгтээр эхлэх мөр гарч иртэл хүлээсний дараа 
+код бичнэ.
 
 
 .. _tut-numbers:
 
-Numbers
--------
+Тоо
+---
 
-The interpreter acts as a simple calculator: you can type an expression at it
-and it will write the value.  Expression syntax is straightforward: the
-operators ``+``, ``-``, ``*`` and ``/`` work just like in most other languages
-(for example, Pascal or C); parentheses can be used for grouping.  For example::
+Харилцуур нь энгийн тооны машин шиг ажилладаг, бичсэн илэрхийллийг дор нь
+боловсруулаад гаргадаг. Илэрхийллийн синтакс нь энгийн, бусад ихэнх програмчлалын
+хэлтэй адилхан ``+``, ``-``, ``*``, ``/`` операторууд нь харгалзан нэмэх, хасах,
+үржих, хуваах үйлдэл. Хаалтыг математик илэрхийллээ бүлэглэх үед ашиглана.
 
    >>> 2+2
    4
-   >>> # This is a comment
+   >>> # Энд тайлбар
    ... 2+2
    4
-   >>> 2+2  # and a comment on the same line as code
+   >>> 2+2  # Эх кодны араас үргэлжлүүлэн тайлбар
    4
    >>> (50-5*6)/4
    5
-   >>> # Integer division returns the floor:
+   >>> # Бүхэл тоон хуваалт нь бүхэл тоог буцаана:
    ... 7/3
    2
    >>> 7/-3
    -3
 
-The equal sign (``'='``) is used to assign a value to a variable. Afterwards, no
-result is displayed before the next interactive prompt::
+``'='`` гэсэн тэнцүүгийн тэмдгийг хувьсагчид утга олгох үед хэрэглэнэ. Утга
+олголтын дараагийн мөрөнд юу ч хэвлэгдэхгүй.
 
    >>> width = 20
    >>> height = 5*9
    >>> width * height
    900
 
-A value can be assigned to several variables simultaneously::
+Утга олгох үйлдэл нь зэрэг хийгдэж болно.
 
-   >>> x = y = z = 0  # Zero x, y and z
+   >>> x = y = z = 0  # x, y, z-ийн утга 0
    >>> x
    0
    >>> y
@@ -79,27 +77,26 @@ A value can be assigned to several variables simultaneously::
    >>> z
    0
 
-Variables must be "defined" (assigned a value) before they can be used, or an
-error will occur::
+Хувьсагчийг хэрэглэхээсээ өмнө тодорхойлсон байх шаардлагатай. Эс бөгөөс алдаа
+гарна::
 
-   >>> # try to access an undefined variable
+   >>> # урьд нь ашиглаж байгаагүй хувьсагч руу хандах
    ... n
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
 
-There is full support for floating point; operators with mixed type operands
-convert the integer operand to floating point::
+Бутархай тоог илэрхийлэлд ашиглах үед бүхэл тоон төрлийн утгууд нь бутархай болж
+хувирснаар үр дүн нь бутархай байна::
 
    >>> 3 * 3.75 / 1.5
    7.5
    >>> 7.0 / 2
    3.5
 
-Complex numbers are also supported; imaginary numbers are written with a suffix
-of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
-``(real+imagj)``, or can be created with the ``complex(real, imag)`` function.
-::
+Мөн комплекс тоо ашиглаж болно. Хуурмаг тооны ард ``j``, ``J`` тэмдэгтийг тавина.
+Бодит хэсэг нь тэгээс ялгаатай бол ``(real+imagj)`` гэх маягаар, эсвэл ``complex(real, imag)``
+гэсэн функцийн дуудалтаар байгуулна. ::
 
    >>> 1j * 1J
    (-1+0j)
@@ -112,9 +109,9 @@ of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
    >>> (1+2j)/(1+1j)
    (1.5+0.5j)
 
-Complex numbers are always represented as two floating point numbers, the real
-and imaginary part.  To extract these parts from a complex number *z*, use
-``z.real`` and ``z.imag``.   ::
+Комплекс тоо нь бодит болон хуурмаг хэсэгтэй. Эдгээр 2 хэсэг рүү хандахын тулд
+``z.real``-ийг бодит хэсэг рүү нь хандахын тулд, ``z.imag``-ээр хуурмаг хэсгийн
+утгыг авна. ::
 
    >>> a=1.5+0.5j
    >>> a.real
@@ -122,10 +119,8 @@ and imaginary part.  To extract these parts from a complex number *z*, use
    >>> a.imag
    0.5
 
-The conversion functions to floating point and integer (:func:`float`,
-:func:`int` and :func:`long`) don't work for complex numbers --- there is no one
-correct way to convert a complex number to a real number.  Use ``abs(z)`` to get
-its magnitude (as a float) or ``z.real`` to get its real part. ::
+Бутархай, бүхэл тоон төрөл болгон хувиргах функцүүд (:func:`float`,
+:func:`int` and :func:`long`) нь комплекс тоон дээр үйлчлэхгүй.
 
    >>> a=3.0+4.0j
    >>> float(a)
@@ -139,9 +134,9 @@ its magnitude (as a float) or ``z.real`` to get its real part. ::
    >>> abs(a)  # sqrt(a.real**2 + a.imag**2)
    5.0
 
-In interactive mode, the last printed expression is assigned to the variable
-``_``.  This means that when you are using Python as a desk calculator, it is
-somewhat easier to continue calculations, for example::
+Харилцуур цонхтой ажиллаж байх үед хамгийн сүүлд дэлгэц рүү хэвлэсэн утга нь
+``_`` нэртэй хувьсагчид хадгалагддаг. Ингэснээр тооны машин шиг ашиглаж байгаа үед
+илэрхийллийг үргэлжлүүлэхэд хялбархан болгодог. Жишээ нь ::
 
    >>> tax = 12.5 / 100
    >>> price = 100.50
@@ -152,18 +147,17 @@ somewhat easier to continue calculations, for example::
    >>> round(_, 2)
    113.06
 
-This variable should be treated as read-only by the user.  Don't explicitly
-assign a value to it --- you would create an independent local variable with the
-same name masking the built-in variable with its magic behavior.
+Энэ хувьсагчийг зөвхөн хандах эрхээр хэрэглэх ёстой. Хэрвээ ямар нэгэн утга олговол
+ижил нэртэй локал хувьсагч үүсч энэ хувьсагч руу хандах боломжгүй болно.
 
 
 .. _tut-strings:
 
-Strings
--------
+Тэмдэгт мөр
+-----------
 
-Besides numbers, Python can also manipulate strings, which can be expressed in
-several ways.  They can be enclosed in single quotes or double quotes::
+Тооноос гадна Пайтон нь тэмдэгт мөртэй хэд хэдэн аргаар ажиллаж чадна. Дан болон
+давхар дуслууд ашиглан тэмдэгт мөрийг бичнэ. ::
 
    >>> 'spam eggs'
    'spam eggs'
@@ -178,9 +172,9 @@ several ways.  They can be enclosed in single quotes or double quotes::
    >>> '"Isn\'t," she said.'
    '"Isn\'t," she said.'
 
-String literals can span multiple lines in several ways.  Continuation lines can
-be used, with a backslash as the last character on the line indicating that the
-next line is a logical continuation of the line::
+Тэмдэгт мөрийг тодорхойлохдоо олон мөртэй болгож бичиж болно. Олон мөрөнд хуваан
+хуваан бичихдээ мөрийн төгсгөлд нь буруу налсан зураас тавьснаар зарлагааг дундуур
+нь тасалж шинэ мөрөнд үргэлжлүүлэн бичнэ::
 
    hello = "This is a rather long string containing\n\
    several lines of text just as you would do in C.\n\
@@ -189,9 +183,9 @@ next line is a logical continuation of the line::
 
    print hello
 
-Note that newlines still need to be embedded in the string using ``\n`` -- the
-newline following the trailing backslash is discarded.  This example would print
-the following:
+Тэмдэгт мөрийг зарлаж ашиглах үедээ ``\n`` тэмдэгтийг ашиглан шинэ мөр үүсгэнэ.
+Буруу налсан зураасийг олон мөрт салгаж хэрэглэнэ. Тиймээс дээрх жишээ нь дараах
+гаралтыг үзүүлнэ:
 
 .. code-block:: text
 
@@ -199,17 +193,16 @@ the following:
    several lines of text just as you would do in C.
        Note that whitespace at the beginning of the line is significant.
 
-Or, strings can be surrounded in a pair of matching triple-quotes: ``"""`` or
-``'''``.  End of lines do not need to be escaped when using triple-quotes, but
-they will be included in the string. ::
-
+Эсвэл тэмдэгт мөрийг дараалсан гурван дан ``'''`` эсвэл давхар ``"""`` хашилтаар 
+хааж тэмдэглэнэ. Мөрийн төгсгөлд буруу налсан зураасыг ашиглах шаардлагагүй.
+::
    print """
    Usage: thingy [OPTIONS]
         -h                        Display this usage message
         -H hostname               Hostname to connect to
    """
 
-produces the following output:
+гаралт нь:
 
 .. code-block:: text
 
@@ -217,31 +210,31 @@ produces the following output:
         -h                        Display this usage message
         -H hostname               Hostname to connect to
 
-If we make the string literal a "raw" string, ``\n`` sequences are not converted
-to newlines, but the backslash at the end of the line, and the newline character
-in the source, are both included in the string as data.  Thus, the example::
+Хэрвээ түүхий тэмдэгт мөрийг зарлаж байгаа бол шинэ мөрний тэмдэгт ``\n``, мөрийн
+төгсгөлд олон мөр болгохоор бичсэн буруу налсан зураас нь ямар нэгэн утга илэрхийлэхгүй
+тэмдэгт мөрөнд шууд орно. Жишээ нь::
 
    hello = r"This is a rather long string containing\n\
    several lines of text much as you would do in C."
 
    print hello
 
-would print:
+гаралт нь:
 
 .. code-block:: text
 
    This is a rather long string containing\n\
    several lines of text much as you would do in C.
 
-The interpreter prints the result of string operations in the same way as they
-are typed for input: inside quotes, and with quotes and other funny characters
-escaped by backslashes, to show the precise value.  The string is enclosed in
-double quotes if the string contains a single quote and no double quotes, else
-it's enclosed in single quotes.  (The :keyword:`print` statement, described
-later, can be used to write strings without quotes or escapes.)
+Харилцуур нь тэмдэгт мөр дээрх үйлдлүүдийн үр дүнг яаж бичсэн яг тэр загвараар
+нь буцааж дэлгэцэн дээр гаргадаг. Буруу налсан тэмдэг ашигласан хөгжилтэй тэмдэгтүүд
+хүртэл байгаагаараа гардаг. Хэрвээ тэмдэгт мөр нь дан хашилт хэрэглэсэн бол
+давхар хашилтаар хааж, харин давхар хашилт хэрэглсэн дан хашилтаар хааж бичих
+нь зүйтэй. Хойхно дурдах :keyword:`print` функц нь буруу налсан тэмдэгтүүдийг зөв дүрслэлд
+нь оруулж хэвлэдэг.
 
-Strings can be concatenated (glued together) with the ``+`` operator, and
-repeated with ``*``::
+Тэмдэгт мөрүүдийг ``+`` оператор ашиглан холбож, ``*`` оператороор давтан
+үзүүлдэг::
 
    >>> word = 'Help' + 'A'
    >>> word
@@ -249,24 +242,23 @@ repeated with ``*``::
    >>> '<' + word*5 + '>'
    '<HelpAHelpAHelpAHelpAHelpA>'
 
-Two string literals next to each other are automatically concatenated; the first
-line above could also have been written ``word = 'Help' 'A'``; this only works
-with two literals, not with arbitrary string expressions::
+2 тэмдэгт мөрийг зэрэгцүүлэн зарлавал автоматаар холбогдоно; Дээрх жишээний
+эхний мөрөн дэхийг ``word = 'Help' 'A'`` гэж бичиж болно; Зөвхөн хоёр тэмдэгт
+мөрийн хувьд ийм арга хэрэглэж болно, дурын тохиолдолд хэрэглэж болохгүй::
 
-   >>> 'str' 'ing'                   #  <-  This is ok
+   >>> 'str' 'ing'                   #  <-  Энэ болно
    'string'
-   >>> 'str'.strip() + 'ing'   #  <-  This is ok
+   >>> 'str'.strip() + 'ing'   #  <-  Энэ болно
    'string'
-   >>> 'str'.strip() 'ing'     #  <-  This is invalid
+   >>> 'str'.strip() 'ing'     #  <-  Алдаатай
      File "<stdin>", line 1, in ?
        'str'.strip() 'ing'
                          ^
    SyntaxError: invalid syntax
 
-Strings can be subscripted (indexed); like in C, the first character of a string
-has subscript (index) 0.  There is no separate character type; a character is
-simply a string of size one.  Like in Icon, substrings can be specified with the
-*slice notation*: two indices separated by a colon. ::
+Тэмдэгт мөрийг Си програмчлалын хэлтэй адилхнаар индекслэдэг. Тэмдэгт мөрийн хамгийн эхний тэмдэгт
+нь 0 дугаартай. Пайтон хэлэнд тэмдэгт гэсэн төрөл байхгүй 1 тэмдэгтийг 1 урттай
+тэмдэгт мөр гэж ойлгодог. Мөн тэмдэгт мөрөөс хэсэглэж авах аргатай. ::
 
    >>> word[4]
    'A'
@@ -275,16 +267,17 @@ simply a string of size one.  Like in Icon, substrings can be specified with the
    >>> word[2:4]
    'lp'
 
-Slice indices have useful defaults; an omitted first index defaults to zero, an
-omitted second index defaults to the size of the string being sliced. ::
+Хэсэглэж авах аргыг ашиглах үед хоёр захын хязгаарыг зааж байгаа тоо нь анхны
+утгатай байдаг тул зааж өгөхгүй байж болно. Эхлэлийн анхны утга нь 0, төгсгөлийн
+анхдагч утга нь тэмдэгт мөрийн урт. ::
 
-   >>> word[:2]    # The first two characters
+   >>> word[:2]    # Эхний 2 тэмдэгт
    'He'
-   >>> word[2:]    # Everything except the first two characters
+   >>> word[2:]    # Эхний 2 тэмдэгтээс хойшхи
    'lpA'
 
-Unlike a C string, Python strings cannot be changed.  Assigning to an indexed
-position in the string results in an error::
+Си хэлний тэмдэгт мөрөөс ялгарах онцлог нь тэмдэгт мөрний дурын тэмдэгтийг
+индексээр дамжуулан өөрчилж болохгүй. Хэрвээ хүчээр өөрчилбөл алдаа өгнө::
 
    >>> word[0] = 'x'
    Traceback (most recent call last):
@@ -295,24 +288,22 @@ position in the string results in an error::
      File "<stdin>", line 1, in ?
    TypeError: object does not support slice assignment
 
-However, creating a new string with the combined content is easy and efficient::
+Дээрх аргын оронд шинэ тэмдэгт мөрийг холбож үүсгэх нь хялбархан, үр дүнтэй юм::
 
    >>> 'x' + word[1:]
    'xelpA'
    >>> 'Splat' + word[4]
    'SplatA'
 
-Here's a useful invariant of slice operations: ``s[:i] + s[i:]`` equals ``s``.
-::
+Хэсэглэх үйлдлийн хувьд ``s[:i] + s[i:]`` нийлбэр нь анхны тэмдэгт мөр ``s``-тэй тэнцүү. ::
 
    >>> word[:2] + word[2:]
    'HelpA'
    >>> word[:3] + word[3:]
    'HelpA'
 
-Degenerate slice indices are handled gracefully: an index that is too large is
-replaced by the string size, an upper bound smaller than the lower bound returns
-an empty string. ::
+Тэмдэгт мөрийн уртаас хэтэрсэн индекс нь тэмдэгт мөрийн хэмжээгээр, харин доод хязгаар
+нь дээд хязгаараасаа их байвал хоосон тэмдэгт мөр буцаана. ::
 
    >>> word[1:100]
    'elpA'
@@ -321,7 +312,7 @@ an empty string. ::
    >>> word[2:1]
    ''
 
-Indices may be negative numbers, to start counting from the right. For example::
+Индекс нь сөрөг тоо байж болно, тийм үед тэмдэгт мөрийн төгсгөлөөс зүүн тийш тоолно ::
 
    >>> word[-1]     # The last character
    'A'
@@ -332,14 +323,14 @@ Indices may be negative numbers, to start counting from the right. For example::
    >>> word[:-2]    # Everything except the last two characters
    'Hel'
 
-But note that -0 is really the same as 0, so it does not count from the right!
+Сөрөг тэг нь тэгтэй адилхан учраас баруун талаас тоолохгүй!
 ::
 
    >>> word[-0]     # (since -0 equals 0)
    'H'
 
-Out-of-range negative slice indices are truncated, but don't try this for
-single-element (non-slice) indices::
+Тэмдэгт мөрийн уртаас хэтэрсэн сөрөг индексийг хэсэглэх үед ашиглахад асуудал
+үүсэхгүй. Гэхдээ үүнийг тэмдэгт рүү шууд хандах үед болгоомжтой хэрэглэх хэрэгтэй::
 
    >>> word[-100:]
    'HelpA'
@@ -348,10 +339,10 @@ single-element (non-slice) indices::
      File "<stdin>", line 1, in ?
    IndexError: string index out of range
 
-One way to remember how slices work is to think of the indices as pointing
-*between* characters, with the left edge of the first character numbered 0.
-Then the right edge of the last character of a string of *n* characters has
-index *n*, for example::
+Хэрхэн хэсэглэж байгааг ойлгохын тулд тэмдэгт бүрийн 2 талд индекс байгаа гэж
+ойлгоно. Зүүнээс баруун тийш өсөх дарааллаар хамгийн эхний тэмдэгтийн зүүн
+талд 0 харин баруун талд нь 1. Тиймээс дараагийн буюу 2-дах тэмдэгтийн зүүн
+талд нь 1 баруун талд нь 2 гэх мэтчилэн үргэлжилнэ. ::
 
     +---+---+---+---+---+
     | H | e | l | p | A |
@@ -359,113 +350,99 @@ index *n*, for example::
     0   1   2   3   4   5
    -5  -4  -3  -2  -1
 
-The first row of numbers gives the position of the indices 0...5 in the string;
-the second row gives the corresponding negative indices. The slice from *i* to
-*j* consists of all characters between the edges labeled *i* and *j*,
-respectively.
+Жишээн дэх 2 мөр тоонуудын эхний мөрнийх нь эерэг дугаарлалтыг харин дараагийн
+мөр нь сөрөг дугаарлалтыг үзүүлж байна. *i*-ээс *j* хүртэлх тэмдэгтүүд нь *i* гэж тэмдэглэгдсэн
+ирмэгээс *j* гэж тэмдэглэгдсэн ирмэг хүртэлх тэмдэгтүүдийг оруулна.
 
-For non-negative indices, the length of a slice is the difference of the
-indices, if both are within bounds.  For example, the length of ``word[1:3]`` is
-2.
-
-The built-in function :func:`len` returns the length of a string::
+Дотоод функц :func:`len` нь тэмдэгт мөрийн уртыг буцаана::
 
    >>> s = 'supercalifragilisticexpialidocious'
    >>> len(s)
    34
 
 
-.. seealso::
+.. Нэмэлт материал::
 
    :ref:`typesseq`
-      Strings, and the Unicode strings described in the next section, are
-      examples of *sequence types*, and support the common operations supported
-      by such types.
+      Тэмдэгт мөр, Юникод тэмдэгт мөрийг дараагийн хэсэгт үзүүлэх болно, эдгээр
+      нь *дараалан хандах* төрлийн нэгэн жишээ бөгөөд, тэдгээр дээр хийгдэх
+      зарим үйлдлүүдийг дэмждэг.
 
    :ref:`string-methods`
-      Both strings and Unicode strings support a large number of methods for
-      basic transformations and searching.
+      Тэмдэгт мөр болон, Юникод тэмдэгт мөрүүд нь үндсэн үйлдлүүдийг хийх
+      олон тооны функцүүдтэй.
 
    :ref:`new-string-formatting`
-      Information about string formatting with :meth:`str.format` is described
-      here.
+      Доор тэмдэгт мөрийг загварчлах :meth:`str.format` функцийн талаар тодруулах
+      болно.
 
    :ref:`string-formatting`
-      The old formatting operations invoked when strings and Unicode strings are
-      the left operand of the ``%`` operator are described in more detail here.
+      Мөн эдгээр тэмдэгт мөрүүдийг загварчлах ``%`` операторын талаар доор дэлгэрэнгүй 
+      дурдана.
 
 
 .. _tut-unicodestrings:
 
-Unicode Strings
----------------
+Юникод тэмдэгт мөр
+------------------
 
 .. sectionauthor:: Marc-Andre Lemburg <mal@lemburg.com>
 
 
-Starting with Python 2.0 a new data type for storing text data is available to
-the programmer: the Unicode object. It can be used to store and manipulate
-Unicode data (see http://www.unicode.org/) and integrates well with the existing
-string objects, providing auto-conversions where necessary.
+Пайтон 2.0 хувилбараас эхлэн текстийн шинэ төрөл гарч ирсэн нь Юникод объект юм.
+Юникод объектийг(http://www.unicode.org/ үзнэ үү) хадгалах болон боловсруулахад ашигладаг.
+Мөн өмнө тэмдэгт мөртэй хамтран ажиллах боломжоор хангаж зарим тохиолдолд автоматаар 
+тэмдэгт мөр Юникод тэмдэгт мөрийн хооронд хувиргалт хийдэг.
 
-Unicode has the advantage of providing one ordinal for every character in every
-script used in modern and ancient texts. Previously, there were only 256
-possible ordinals for script characters. Texts were typically bound to a code
-page which mapped the ordinals to script characters. This lead to very much
-confusion especially with respect to internationalization (usually written as
-``i18n`` --- ``'i'`` + 18 characters + ``'n'``) of software.  Unicode solves
-these problems by defining one code page for all scripts.
+Юникод нь орчин үеийн болон дээр үеийн бүхий л текстүүдийн тэмдэгт бүрт давтагдашгүй
+тоо өгч хадгалдгаараа давуу талтай. Өмнө нь зөвхөн 256 тэмдэгтийг л хадгалдаг 
+байсан. Өөр тэмдэгт ашиглах болсон тохиолдолд дугаарыг нь тэмдэгт рүү буулгасан
+нэмэлт кодчлолын хүснэгтийг хавсаргадаг. Юникод нь бүх тэмдэгтүүдэд зориулсан
+ганцхан кодчлолын хүснэгтийг бий болгосон юм.
 
-Creating Unicode strings in Python is just as simple as creating normal
-strings::
+Юникод тэмдэгт мөрийг Пайтонд үүсгэх нь энгийн тэмдэгт мөрийг үүсгэж
+байгаа бараг адилхан::
 
    >>> u'Hello World !'
    u'Hello World !'
 
-The small ``'u'`` in front of the quote indicates that a Unicode string is
-supposed to be created. If you want to include special characters in the string,
-you can do so by using the Python *Unicode-Escape* encoding. The following
-example shows how::
+Тэмдэгт мөрийн эхэнд байрлах ``'u'`` тэмдэг нь Юникод тэмдэгт мөрийг зохиож
+байгааг илтгэнэ. Хэрвээ тусгай Юникод тэмдэгтийг оруулахаар бол *Юникод-Тэмдэглэгээ* 
+аргыг ашиглана. Жишээн дээр хэрхэн хийхийг үзүүлэв::
 
    >>> u'Hello\u0020World !'
    u'Hello World !'
 
-The escape sequence ``\u0020`` indicates to insert the Unicode character with
-the ordinal value 0x0020 (the space character) at the given position.
+``\u0020`` гэсэн Юникод тэмдэглэгээ нь 0x0020 дугаартай тэмдэгт буюу хоосон
+зайг тухайн байрлалд оруулжээ.
 
-Other characters are interpreted by using their respective ordinal values
-directly as Unicode ordinals.  If you have literal strings in the standard
-Latin-1 encoding that is used in many Western countries, you will find it
-convenient that the lower 256 characters of Unicode are the same as the 256
-characters of Latin-1.
+Юникод тэмдэглэгээ ашиглаагүй бусад тэмдэгтүүд нь шууд Юникодын дугаараа авна.
+Учир нь Латин-1 кодчлолын 256 тэмдэгт нь Юникодын бага 256 тэмдэгттэй адил байдаг.
 
-For experts, there is also a raw mode just like the one for normal strings. You
-have to prefix the opening quote with 'ur' to have Python use the
-*Raw-Unicode-Escape* encoding. It will only apply the above ``\uXXXX``
-conversion if there is an uneven number of backslashes in front of the small
-'u'. ::
+Тэмдэгт мөрийг түүхий байдлаар нь тэмдэглэхэд ашигладаг *r* гэсэн утгварын хажууд
+*u* -г нэмж өгөөд *Түүхий-Юникод-Тэмдэглэгээг* ашиглаж болно. Энэ үед зөвхөн
+``\uXXXX`` тэмдэгтүүдийг л хөрвүүлдэг. Бусад буруу налсан зураас нь ямар нэгэн утга
+агуулахгүй. ::
 
    >>> ur'Hello\u0020World !'
    u'Hello World !'
    >>> ur'Hello\\u0020World !'
    u'Hello\\\\u0020World !'
 
-The raw mode is most useful when you have to enter lots of backslashes, as can
-be necessary in regular expressions.
+Тэмдэгт мөрийг түүхийгээр нь тэмдэглэх нь текстийн хэв болон олон тооны буруу 
+налсан зураастай тэмдэгт мөртэй ажиллах үед ойлгомжтой болгодог.
 
-Apart from these standard encodings, Python provides a whole set of other ways
-of creating Unicode strings on the basis of a known encoding.
+Эдгээр стандард кодчлолуудаас гадна Пайтон өргөн хэрэглэгддэг кодчлолуудтай ажиллах
+функцийг бэлтгэж өгсөн. 
 
 .. index:: builtin: unicode
 
-The built-in function :func:`unicode` provides access to all registered Unicode
-codecs (COders and DECoders). Some of the more well known encodings which these
-codecs can convert are *Latin-1*, *ASCII*, *UTF-8*, and *UTF-16*. The latter two
-are variable-length encodings that store each Unicode character in one or more
-bytes. The default encoding is normally set to ASCII, which passes through
-characters in the range 0 to 127 and rejects any other characters with an error.
-When a Unicode string is printed, written to a file, or converted with
-:func:`str`, conversion takes place using this default encoding. ::
+:func:`unicode` дотоод функц нь бүх Юникод кодчлогч болон тайлах кодчлолд хандахад
+хэрэглэгдэнэ. Зарим нэр бүхий кодчлолуудыг дурдвал *Latin-1*, *ASCII*, *UTF-8*, *UTF-16*.
+Энд сүүлийн 2 нь хувьсах урттай ба тэмдэгтүүдийг 1 болон түүнээс дээшхи байтад хадгалдаг.
+Анхдагч кодчлолын утга нь ASCII юм. Энэ нь 0-127 хүртэлх тоогоор тэмдэгтүүдийг дугаарладаг. 
+127-оос дээш дугаартай тэмдэгттэй тааралдах үед алдаа гаргадаг. Юникод тэмдэгт мөрийг хэвлэх
+файл руу бичих :func:`str` функц ашиглаж хувиргах үед анхдагч кодчлол руу хувиргадаг. ::
 
    >>> u"abc"
    u'abc'
@@ -478,16 +455,14 @@ When a Unicode string is printed, written to a file, or converted with
      File "<stdin>", line 1, in ?
    UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-2: ordinal not in range(128)
 
-To convert a Unicode string into an 8-bit string using a specific encoding,
-Unicode objects provide an :func:`encode` method that takes one argument, the
-name of the encoding.  Lowercase names for encodings are preferred. ::
+Юникод тэмдэгт мөрийг тодорхой кодчлол руу хувиргахдаа :func:`encode` функцийг
+ашигладаг. Аргументаар кодчлолынхоо нэрийг жижиг тэмдэгт ашиглан бичнэ. ::
 
    >>> u"äöü".encode('utf-8')
    '\xc3\xa4\xc3\xb6\xc3\xbc'
 
-If you have data in a specific encoding and want to produce a corresponding
-Unicode string from it, you can use the :func:`unicode` function with the
-encoding name as the second argument. ::
+Өгөгдөл чинь тусгай кодчлол ашигласан үед нь :func:`unicode` функцийн тусламжтайгаар
+Юникод руу хөрвүүлнэ. Хоёр дах аргументаар нь кодчлолын нэрийг өгнө. ::
 
    >>> unicode('\xc3\xa4\xc3\xb6\xc3\xbc', 'utf-8')
    u'\xe4\xf6\xfc'
@@ -495,20 +470,20 @@ encoding name as the second argument. ::
 
 .. _tut-lists:
 
-Lists
------
+Жагсаалт
+--------
 
-Python knows a number of *compound* data types, used to group together other
-values.  The most versatile is the *list*, which can be written as a list of
-comma-separated values (items) between square brackets.  List items need not all
-have the same type. ::
+Пайтон нь өөр өөр утгуудыг нийлүүлж бүлэглэхэд хэрэглэдэг хэд хэдэн *нийлмэл* өгөгдлийн 
+төрөлтэй. Хамгийн өргөн хэрэглэгддэг нь *жагсаалт* төрөл юм. Жагсаалтыг
+дөрвөлжин хаалтанд таслалаар тусгаарлан бичнэ. Жагсаалтын элементүүд нь бүгд ижил
+төрлийн байх албагүй. ::
 
    >>> a = ['spam', 'eggs', 100, 1234]
    >>> a
    ['spam', 'eggs', 100, 1234]
 
-Like string indices, list indices start at 0, and lists can be sliced,
-concatenated and so on::
+Тэмдэгт мөртэй адилаар жагсаалт нь 0-ээс эхэлж, хэсэглэж, холбож зэрэг үйлдлүүдийг
+дэмжинэ ::
 
    >>> a[0]
    'spam'
@@ -523,14 +498,14 @@ concatenated and so on::
    >>> 3*a[:3] + ['Boo!']
    ['spam', 'eggs', 100, 'spam', 'eggs', 100, 'spam', 'eggs', 100, 'Boo!']
 
-All slice operations return a new list containing the requested elements.  This
-means that the following slice returns a shallow copy of the list *a*::
+Хэсэглэх үйлдэл нь шинэ жагсаалтыг сонирхсон элементүүдтэй нь буцаана. 
+Шинэ жагсаалт нь өмнөх жагсаалтынхаа хуулбар нь байна. Ижилхэн биш! ::
 
    >>> a[:]
    ['spam', 'eggs', 100, 1234]
 
-Unlike strings, which are *immutable*, it is possible to change individual
-elements of a list::
+Тэмдэгт мөр нь өөрчлөх боломжгүй байдаг бол жагсаалтын хувьд дурын элементэд
+утга олгож болдог::
 
    >>> a
    ['spam', 'eggs', 100, 1234]
@@ -538,38 +513,38 @@ elements of a list::
    >>> a
    ['spam', 'eggs', 123, 1234]
 
-Assignment to slices is also possible, and this can even change the size of the
-list or clear it entirely::
+Хэсэглэсэн хэсэгтээ утга олгох бас боломжтой. Энэ нь жагсаалтын хэмжээг өөрчилж
+эсвэл бүр бүхлээр нь цэвэрлэнэ::
 
-   >>> # Replace some items:
+   >>> # Зарим элементүүдийг шинээр олгоё:
    ... a[0:2] = [1, 12]
    >>> a
    [1, 12, 123, 1234]
-   >>> # Remove some:
+   >>> # Заримыг нь устгая:
    ... a[0:2] = []
    >>> a
    [123, 1234]
-   >>> # Insert some:
+   >>> # Оруулах:
    ... a[1:1] = ['bletch', 'xyzzy']
    >>> a
    [123, 'bletch', 'xyzzy', 1234]
-   >>> # Insert (a copy of) itself at the beginning
+   >>> # Жагсаалтын эхэнд өөрийг нь хуулбарлаж оруулна
    >>> a[:0] = a
    >>> a
    [123, 'bletch', 'xyzzy', 1234, 123, 'bletch', 'xyzzy', 1234]
-   >>> # Clear the list: replace all items with an empty list
+   >>> # Жагсаалтыг цэвэрлэх: Ө.Х бүх элементийг нь хоосон жагсаалтаар солих
    >>> a[:] = []
    >>> a
    []
 
-The built-in function :func:`len` also applies to lists::
+Мөн дотоод :func:`len` функц маань жагсаалтанд ашиглагддаг::
 
    >>> a = ['a', 'b', 'c', 'd']
    >>> len(a)
    4
 
-It is possible to nest lists (create lists containing other lists), for
-example::
+Жагсаалтын элемент нь жагсаалт байж болно. Өөрөөр хэлбэл нэг нь нөгөөгөө
+агуулсан давхар жагсаалт::
 
    >>> q = [2, 3]
    >>> p = [1, q, 4]
@@ -585,21 +560,19 @@ example::
    >>> q
    [2, 3, 'xtra']
 
-Note that in the last example, ``p[1]`` and ``q`` really refer to the same
-object!  We'll come back to *object semantics* later.
+``p[1]`` болон ``q`` хувьсагч нь яг ижилхэн объект заана.
 
 
 .. _tut-firststeps:
 
-First Steps Towards Programming
-===============================
+Програмчлах анхны алхмууд
+=========================
 
-Of course, we can use Python for more complicated tasks than adding two and two
-together.  For instance, we can write an initial sub-sequence of the *Fibonacci*
-series as follows::
+Пайтонг өмнө үзүүлсэн зөвхөн 2 зүйлийг хооронд нь нэмэх бус түүнээс илүү
+комплекс ажилд хэрэглэж болно. Доорх жишээ нь *Фибоначчи*-гийн дэд дарааллыг хэвлэв::
 
-   >>> # Fibonacci series:
-   ... # the sum of two elements defines the next
+   >>> # Фибоначчийн дараалал:
+   ... # дараалсан 2 элементийн дараагийнх нь өмнө 2-ын нийлбэр
    ... a, b = 0, 1
    >>> while b < 10:
    ...     print b
@@ -612,44 +585,38 @@ series as follows::
    5
    8
 
-This example introduces several new features.
+Энэ жишээ нь зарим нэг шинэ онцлогууд үзүүлжээ.
 
-* The first line contains a *multiple assignment*: the variables ``a`` and ``b``
-  simultaneously get the new values 0 and 1.  On the last line this is used again,
-  demonstrating that the expressions on the right-hand side are all evaluated
-  first before any of the assignments take place.  The right-hand side expressions
-  are evaluated  from the left to the right.
+* Эхний мөр нь *зэрэг утга олголт*-ын жишээг ингэж үзүүлжээ. ``a``, ``b`` хувьсагчууд
+  нь нэгэн зэрэг 0, 1 гэсэн утгуудыг авна. Сүүлийн мөрөн дээр ч энэ техникийг
+  давтав. Эхлээд тэнцүүгийн тэмдгийн баруун талын илэрхийллүүд нь бодогддог.
 
-* The :keyword:`while` loop executes as long as the condition (here: ``b < 10``)
-  remains true.  In Python, like in C, any non-zero integer value is true; zero is
-  false.  The condition may also be a string or list value, in fact any sequence;
-  anything with a non-zero length is true, empty sequences are false.  The test
-  used in the example is a simple comparison.  The standard comparison operators
-  are written the same as in C: ``<`` (less than), ``>`` (greater than), ``==``
-  (equal to), ``<=`` (less than or equal to), ``>=`` (greater than or equal to)
-  and ``!=`` (not equal to).
+* :keyword:`while` нь нөхцөл үнэн үед давталтыг үргэлжлүүлсээр байдаг (Энд: ``b < 10``)
+  Пайтон нь Си хэлтэй мөн адилаар тэгээс ялгаатай утгыг үнэн, харин тэгийг худал
+  гэж авдаг. Мөн хоосон жагсаалт, 0 урттай тэмдэгт мөр, ``None`` объектууд нь
+  худал гэгддэг, бусад тохиолдлуудад үнэн байна. Харьцуулах операторууд нь
+  Си хэлнийхтэй адилхан: ``<`` бага, ``>`` их, ``==`` тэнцүү, ``<=`` ихгүй, 
+  ``>=`` багагүй, ``!=`` ялгаатай гэсэн утгатай.
 
-* The *body* of the loop is *indented*: indentation is Python's way of grouping
-  statements.  Python does not (yet!) provide an intelligent input line editing
-  facility, so you have to type a tab or space(s) for each indented line.  In
-  practice you will prepare more complicated input for Python with a text editor;
-  most text editors have an auto-indent facility.  When a compound statement is
-  entered interactively, it must be followed by a blank line to indicate
-  completion (since the parser cannot guess when you have typed the last line).
-  Note that each line within a basic block must be indented by the same amount.
+* Давталтын *эх бие* нь мөрөн дэх эхний хоосон зайгаараа адилхан: Мөр ингэж зэрэгцүүлэх
+  нь илэрхийллүүдийг блок илэрхийлэл болгож байгаа юм. Пайтон ухаалгаар мөрөн дэх
+  илэрхийллүүдийг боддог учраас мөр болгоны эхлэлд шаардлагатай үед хэдэн хоосон зай
+  эсвэл таб зогсолт авах хэрэгтэй. Практик дээр ихэнх текст боловсруулагч програмууд
+  нь автоматаар урдаа таб зогсолт авдаг тул тэдгээр тохиргоог боловсруулагчдаа
+  хийж өгөх хэрэгтэй. Урдаа хоосон зай аваагүй үед блок илэрхийллийн төгсгөл гэж
+  харилцуур цонх ойлгоод ажиллуулж эхлүүлдэг. Нэг блокны илэрхийлэл нь яг ижилхэн
+  тооны ижилхэн зай авах тэмдэгтэй байх ёстой.
 
-* The :keyword:`print` statement writes the value of the expression(s) it is
-  given.  It differs from just writing the expression you want to write (as we did
-  earlier in the calculator examples) in the way it handles multiple expressions
-  and strings.  Strings are printed without quotes, and a space is inserted
-  between items, so you can format things nicely, like this::
+* 
+  :keyword:`print` функцийг ашиглан илэрхийллийн утгыг дэлгэц рүүгээ хэвлэхэд
+  хэрэглэнэ. Өмнөх тооны машинтай жишээнээс ялгарах нь өгөгдлийг дэлгэцэнд цэвэрхэн
+  үзүүлдэг, мөн хоёр талын хашилт тэмдэгтүүдийг хасаад цэвэрхэн хэвлэдэнэ::
 
      >>> i = 256*256
      >>> print 'The value of i is', i
      The value of i is 65536
 
-  A trailing comma avoids the newline after the output::
-
+::
      >>> a, b = 0, 1
      >>> while b < 1000:
      ...     print b,
@@ -657,5 +624,5 @@ This example introduces several new features.
      ...
      1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
 
-  Note that the interpreter inserts a newline before it prints the next prompt if
-  the last line was not completed.
+  Харилцуур цонхны дараагийн мөр хэвлэгдэхийнхээ өмнө дэлгэц рүү шинэ мөр авах
+  тэмдэгтийг бичдэг.
