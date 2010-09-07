@@ -273,8 +273,9 @@ operations::
 The :func:`dir` Function
 ========================
 
-The built-in function :func:`dir` is used to find out which names a module
-defines.  It returns a sorted list of strings::
+:func:`dir` функцээр өгөгдсөн модул дотор ямар нэртэй тодорхойлолтууд
+байна гэдгийг тодорхойлоход ашигладаг.Энэ нь эрэмблэгдсэн тэмдэгт төрлийн
+жагсаалт буцаана::
 
    >>> import fibo, sys
    >>> dir(fibo)
@@ -291,7 +292,7 @@ defines.  It returns a sorted list of strings::
     'setprofile', 'setrecursionlimit', 'settrace', 'stderr', 'stdin', 'stdout',
     'version', 'version_info', 'warnoptions']
 
-Without arguments, :func:`dir` lists the names you have defined currently::
+Аргументтай :func:`dir` функц нь таны тодорхойлсон тодорхойлолтуудыг гаргадаг::
 
    >>> a = [1, 2, 3, 4, 5]
    >>> import fibo
@@ -299,13 +300,13 @@ Without arguments, :func:`dir` lists the names you have defined currently::
    >>> dir()
    ['__builtins__', '__doc__', '__file__', '__name__', 'a', 'fib', 'fibo', 'sys']
 
-Note that it lists all types of names: variables, modules, functions, etc.
+Энд бүх төрлийн нэрүүдийн жагсаалт байна: хувьсагчууд, модулиуд, функцууд гэх мэт.
 
 .. index:: module: __builtin__
 
-:func:`dir` does not list the names of built-in functions and variables.  If you
-want a list of those, they are defined in the standard module
-:mod:`__builtin__`::
+:func:`dir` функц нь built-in функц болон хувьсагчийн нэрийн жагсаалтыг гаргадаггүй.
+Хэрвээ энэ жагсаалтыг гаргаж авах бол  түүнийг стандарт модуль болох
+:mod:`__builtin__` -ийг тодорхойлох хэрэгтэй::
 
    >>> import __builtin__
    >>> dir(__builtin__)
@@ -340,9 +341,9 @@ want a list of those, they are defined in the standard module
 Packages
 ========
 
-Packages are a way of structuring Python's module namespace by using "dotted
-module names".  For example, the module name :mod:`A.B` designates a submodule
-named ``B`` in a package named ``A``.  Just like the use of modules saves the
+Пакежууд бол Пайтонгийн модулийн нэрийн мужийг бүтэцлэх арга ба "цэгчилсэн модулийн 
+нэр"-тэй.Жишээлбэл, :mod:`A.B` гэсэн модулийн нэр бол ``A`` гэсэн багцын
+``B`` гэсэн дэд модуль байна. Just like the use of modules saves the
 authors of different modules from having to worry about each other's global
 variable names, the use of dotted module names saves the authors of multi-module
 packages like NumPy or the Python Imaging Library from having to worry about
@@ -359,9 +360,9 @@ artificial stereo effect), so in addition you will be writing a never-ending
 stream of modules to perform these operations.  Here's a possible structure for
 your package (expressed in terms of a hierarchical filesystem)::
 
-   sound/                          Top-level package
-         __init__.py               Initialize the sound package
-         formats/                  Subpackage for file format conversions
+   sound/                          Хамгийн дээд түвшний багч
+         __init__.py               sound  багцийн байгуулагч
+         formats/                  Файлын форматын дэд багч
                  __init__.py
                  wavread.py
                  wavwrite.py
@@ -370,21 +371,21 @@ your package (expressed in terms of a hierarchical filesystem)::
                  auread.py
                  auwrite.py
                  ...
-         effects/                  Subpackage for sound effects
+         effects/                  Дууны эффектийн дэд багц
                  __init__.py
                  echo.py
                  surround.py
                  reverse.py
                  ...
-         filters/                  Subpackage for filters
+         filters/                  Шүүлтүүрүүдийн дэд багч
                  __init__.py
                  equalizer.py
                  vocoder.py
                  karaoke.py
                  ...
 
-When importing the package, Python searches through the directories on
-``sys.path`` looking for the package subdirectory.
+Багцыг импортлохдоо Пайтан ``sys.path`` ашиглан директоруудыг олон цааш нь
+дэд директор луу ч нэвтрэн хайдаг.
 
 The :file:`__init__.py` files are required to make Python treat the directories
 as containing packages; this is done to prevent directories with a common name,
@@ -493,19 +494,20 @@ packages.
 Intra-package References
 ------------------------
 
-The submodules often need to refer to each other.  For example, the
-:mod:`surround` module might use the :mod:`echo` module.  In fact, such
-references are so common that the :keyword:`import` statement first looks in the
-containing package before looking in the standard module search path. Thus, the
-:mod:`surround` module can simply use ``import echo`` or ``from echo import
-echofilter``.  If the imported module is not found in the current package (the
-package of which the current module is a submodule), the :keyword:`import`
-statement looks for a top-level module with the given name.
+Дэд модулиуд нь ихэвчлэн бие биенээ заасан байдаг. Жишээ нь , 
+:mod:`surround` модуль нь :mod:`echo` модулийг хэрэглэсэн
+байж болно. Үнэн хэрэгтээ, эдгээр заалтууд дээр :keyword:`import` илэрхийлэл нь
+стандарт модулийн хайх замаас хайхаас түрүүлэн багтаасан багцаас хайдаг.
+Энэ :mod:`surround` модул нь  ``import echo`` эсвэл ``from echo import
+echofilter`` хялбархан хэрэглэнэ. Хэрэв импортлосон модуль нь 
+ажиллаж байгаа багцаас олдохгүй бол (багц нь ажиллаж байгаа модулийн дэд
+модуль бол ),  :keyword:`import` илэрхийлэл өгсөн нэрний дээд түвшний
+модулаас хайж эхэлдэг.
 
-When packages are structured into subpackages (as with the :mod:`sound` package
-in the example), you can use absolute imports to refer to submodules of siblings
-packages.  For example, if the module :mod:`sound.filters.vocoder` needs to use
-the :mod:`echo` module in the :mod:`sound.effects` package, it can use ``from
+Багцууд нь дэд багцуудад бүтэцлэгдсэн үед (жишээн дээр :mod:`sound` багцыг
+үзүүлсэн), та дэд модулиудын хооронд багцыг харьцангуйгаар импортлож болно.
+Жишээлбэл, хэрэв модуль :mod:`sound.filters.vocoder`  :mod:`sound.effects` 
+багцад байгаа :mod:`echo` модулийг ашиглах бол,дараах байдлаар бичиж болно ``from
 sound.effects import echo``.
 
 Starting with Python 2.5, in addition to the implicit relative imports described
@@ -527,11 +529,10 @@ always use absolute imports.
 Packages in Multiple Directories
 --------------------------------
 
-Packages support one more special attribute, :attr:`__path__`.  This is
-initialized to be a list containing the name of the directory holding the
-package's :file:`__init__.py` before the code in that file is executed.  This
-variable can be modified; doing so affects future searches for modules and
-subpackages contained in the package.
+Багцууд нь бас нэг тусгай аттрибутыг дэмждэг, :attr:`__path__`. Энэ нь 
+директорын нэрийг жагсаалтыг агуулж байгаа тухайн багцын :file:`__init__.py` 
+файл доторх код ажиллахаас өмнө анхны утга олгогдсон байдаг.Энэ хувьсагчийн
+утга нь тухайн багцад байгаа модулиудыг хайхад өөрчлөгдсөн байдаг .
 
 While this feature is not often needed, it can be used to extend the set of
 modules found in a package.
