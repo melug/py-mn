@@ -399,26 +399,26 @@ example::
 
    import sound.effects.echo
 
-This loads the submodule :mod:`sound.effects.echo`.  It must be referenced with
-its full name. ::
+Энэ нь :mod:`sound.effects.echo` дэд модулийг ачаална. Заахдаа бүтэн 
+нэрээр нь дуудна. ::
 
    sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)
 
-An alternative way of importing the submodule is::
+Дэд модулийг өөр аргаар импортлов::
 
    from sound.effects import echo
 
-This also loads the submodule :mod:`echo`, and makes it available without its
-package prefix, so it can be used as follows::
+Энэ мөн л :mod:`echo` модулийг ачаалах бөгөөд, энд багцын препиксээр нь 
+ачаалсан учир, дараах байдлаар хэрэглэж болно::
 
    echo.echofilter(input, output, delay=0.7, atten=4)
 
-Yet another variation is to import the desired function or variable directly::
+Өөр нэг зарлалт нь бол тухайн дуудах функц болон хувьсагчаа шууд импортлох юм::
 
    from sound.effects.echo import echofilter
 
-Again, this loads the submodule :mod:`echo`, but this makes its function
-:func:`echofilter` directly available::
+Энэ нь мөн л  :mod:`echo` модулийг ачаалах бөгөөд, энд 
+:func:`echofilter` гээд функцийн нэрийг шууд ашиглаж болно::
 
    echofilter(input, output, delay=0.7, atten=4)
 
