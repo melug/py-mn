@@ -69,39 +69,39 @@ Modules
 More on Modules
 ===============
 
-A module can contain executable statements as well as function definitions.
-These statements are intended to initialize the module. They are executed only
-the *first* time the module is imported somewhere. [#]_
+Модуль нь функцийн тодорхойлолтоос гадна ажиллах боломжтой илэрхийллийг 
+агуулж чадна.Эдгээр илэрхийлэлүүд нь модульд утга оноох үүрэгтэй.  Эдгээр
+нь модулийг хаа нэг газар *анх удаа* импортлоход ажилладаг.[#]_
 
-Each module has its own private symbol table, which is used as the global symbol
-table by all functions defined in the module. Thus, the author of a module can
-use global variables in the module without worrying about accidental clashes
-with a user's global variables. On the other hand, if you know what you are
+Модуль өөрийн гэсэн тэмдэгтийн хүснэгт эзэмшдэг, энэхүү хүснэгт нь глобаль 
+тэмдэгтийн хүснэгтийн модуль дахь бүх функцийн тодорхойлолтийг хэрэглэдэг.
+Энэ нь модулийн зохиогчид модуль дахь глобаль хувьсагчдыг хэрэглэгчдийн
+глобаль хувьсагчидтай зөрчилдөхийг санаа тавьдаг. On the other hand, if you know what you are
 doing you can touch a module's global variables with the same notation used to
 refer to its functions, ``modname.itemname``.
 
-Modules can import other modules.  It is customary but not required to place all
-:keyword:`import` statements at the beginning of a module (or script, for that
-matter).  The imported module names are placed in the importing module's global
-symbol table.
+Модулиуд бусад модулиудийг импортлож чадна. Энэ бол ердийн л зүйл гэвч 
+:keyword:`import` илэрхийллүүдийг заавал модулийн эхэнд(эсвэл скриптийн
+эхэнд, за өөр хаана ч) бичих шаардлагагүй. Импортлогдсон модулийн нэр нь 
+импортлож байгаа модулийн глобаль тэмдэгтийн хүснэгтэд байрладаг.
 
-There is a variant of the :keyword:`import` statement that imports names from a
-module directly into the importing module's symbol table.  For example::
+:keyword:`import` илэрхийллийн онцлог бол импортийн нэрүүд нь импортлож байгаа
+модулийн тэмдэгтийн хүснэгтээс шууд авдаг. Жишээ нь::
 
    >>> from fibo import fib, fib2
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This does not introduce the module name from which the imports are taken in the
-local symbol table (so in the example, ``fibo`` is not defined).
+Энэ нь модулийг импортлохдоо модулийн нэрийг мэдэж чадахгүй учир локаль
+тэмдэгтийн хүснэгтээр харж импортлоно.(жишээн дээр ``fibo`` тодорхойлогдоогүй)
 
-There is even a variant to import all names that a module defines::
+Дараах илэрхийллээр модуль доторх бүх тодорхойлолт нэрүүдийг авна::
 
    >>> from fibo import *
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This imports all names except those beginning with an underscore (``_``).
+Бүх нэрийг импортлохдоо (``_``)-аар эхэлсэнүүдийг нь алгасна.
 
 Note that in general the practice of importing ``*`` from a module or package is
 frowned upon, since it often causes poorly readable code. However, it is okay to
