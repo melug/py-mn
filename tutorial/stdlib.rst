@@ -1,42 +1,37 @@
 .. _tut-brieftour:
 
-**********************************
-Brief Tour of the Standard Library
-**********************************
+***********************************
+Стандарт сангуудаар хийх товч аялал
+***********************************
 
 
 .. _tut-os-interface:
 
-Operating System Interface
+Үйлдлийн системийн интерфэйс
 ==========================
 
-The :mod:`os` module provides dozens of functions for interacting with the
-operating system::
+:mod:`os` модуль нь үйлдлийн системтэй ажиллах олон тооны функцуудыг агуулдаг.
 
    >>> import os
    >>> os.system('time 0:02')
    0
-   >>> os.getcwd()      # Return the current working directory
+   >>> os.getcwd()      # Одоо ажиллаж буй хавтсыг буцаана
    'C:\\Python26'
    >>> os.chdir('/server/accesslogs')
 
-Be sure to use the ``import os`` style instead of ``from os import *``.  This
-will keep :func:`os.open` from shadowing the built-in :func:`open` function which
-operates much differently.
+Гэхдээ ``from os import *`` гэхийн оронд ``import os``-ийг хэрэглэж заншаарай. Энэ нь :func:`os.open` функцээр огт өөрөөр ажилладаг :func:`open` функцыг сүүдэрлэхээс хамгаалах болно.
 
 .. index:: builtin: help
 
-The built-in :func:`dir` and :func:`help` functions are useful as interactive
-aids for working with large modules like :mod:`os`::
+Пайтоны :func:`dir` болон :func:`help` функцүүд нь :mod:`os`:: мэт том модулиудтай ажиллаж байхад интерактив туслалцаа авахад тустай байдаг.
 
    >>> import os
    >>> dir(os)
-   <returns a list of all module functions>
+   <модуль дахь бүх функцүүдийн жагсаалтыг буцаана>
    >>> help(os)
-   <returns an extensive manual page created from the module's docstrings>
+   <модулийн docstring-с үүсгэсэн дэлгэрэнгүй гарын авлагыг буцаана>
 
-For daily file and directory management tasks, the :mod:`shutil` module provides
-a higher level interface that is easier to use::
+Өдөр тутмын файл болон хавтастай ажиллах тохиолдолд :mod:`shutil` нь ашиглахад хялбар илүү өндөр түвшний интерфэйс юм::
 
    >>> import shutil
    >>> shutil.copyfile('data.db', 'archive.db')
@@ -45,11 +40,10 @@ a higher level interface that is easier to use::
 
 .. _tut-file-wildcards:
 
-File Wildcards
+Файлын Wildcards
 ==============
 
-The :mod:`glob` module provides a function for making file lists from directory
-wildcard searches::
+:mod:`glob` модуль нь хавтаснаас wildcard хайлтаар файлуудын жагсаалт үүсгэх функцийг агуулдаг::
 
    >>> import glob
    >>> glob.glob('*.py')
@@ -170,7 +164,7 @@ and :mod:`smtplib` for sending mail::
 
 .. _tut-dates-and-times:
 
-Dates and Times
+Огноо болон цаг
 ===============
 
 The :mod:`datetime` module supplies classes for manipulating dates and times in
@@ -196,12 +190,11 @@ aware. ::
 
 .. _tut-data-compression:
 
-Data Compression
-================
+Өгөгдөл шахах
+=============
 
-Common data archiving and compression formats are directly supported by modules
-including: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` and
-:mod:`tarfile`. ::
+:mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` болон
+:mod:`tarfile` зэрэг модулиуд нь өгөгдлийг архивлах болон шахах түгээмэл форматуудыг дэмждэг ::
 
    >>> import zlib
    >>> s = 'witch which has which witches wrist watch'
@@ -242,8 +235,8 @@ larger blocks of code.
 
 .. _tut-quality-control:
 
-Quality Control
-===============
+Чанарын удирдлага
+=================
 
 One approach for developing high quality software is to write tests for each
 function as it is developed and to run those tests frequently during the
