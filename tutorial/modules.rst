@@ -76,9 +76,10 @@ More on Modules
 Модуль өөрийн гэсэн тэмдэгтийн хүснэгт эзэмшдэг, энэхүү хүснэгт нь глобаль 
 тэмдэгтийн хүснэгтийн модуль дахь бүх функцийн тодорхойлолтийг хэрэглэдэг.
 Энэ нь модулийн зохиогчид модуль дахь глобаль хувьсагчдыг хэрэглэгчдийн
-глобаль хувьсагчидтай зөрчилдөхийг санаа тавьдаг. On the other hand, if you know what you are
-doing you can touch a module's global variables with the same notation used to
-refer to its functions, ``modname.itemname``.
+глобаль хувьсагчидтай зөрчилдөхийг санаа тавьдаг. Өөрөөр хэлбэл, хэрвээ чи
+юу хийхээ мэдэж байвал модулийнхаа глобаль хувьсагчтай ижил тэмдэглэгээг 
+хэрэглэж болох бөгөөд энэ нь ``modname.itemname`` функцдээ хамааралтай байх
+ёстой.
 
 Модулиуд бусад модулиудийг импортлож чадна. Энэ бол ердийн л зүйл гэвч 
 :keyword:`import` илэрхийллүүдийг заавал модулийн эхэнд(эсвэл скриптийн
@@ -103,16 +104,16 @@ refer to its functions, ``modname.itemname``.
 
 Бүх нэрийг импортлохдоо (``_``)-аар эхэлсэнүүдийг нь алгасна.
 
-Note that in general the practice of importing ``*`` from a module or package is
-frowned upon, since it often causes poorly readable code. However, it is okay to
-use it to save typing in interactive sessions.
+Ер нь бол багч эсвэл модулийг импортлохдоо ``*`` гэж хэрэглэдэг ерөнхий 
+туршлагыг зөвшөөрдөггүй байсан ч уншихад эвтэйхэн болгохын тулд зөвшөөрсөн.
+Гэсэн хэдий ч интерактив горимд ингэж бичихэд ямар ч асуудалгүй.
 
 .. note::
 
-   For efficiency reasons, each module is only imported once per interpreter
-   session.  Therefore, if you change your modules, you must restart the
-   interpreter -- or, if it's just one module you want to test interactively,
-   use :func:`reload`, e.g. ``reload(modulename)``.
+   Үр ашигтай байлгахын тулд модулийг интерпретерийн тохиолдол бүр дээр нэг л 
+   удаа импортлогддог. Ингэснээр, хэрвээ чи өөрийн модулийг өөрчлөх бол 
+   интерпретерийг дахин ачалаах хэрэгтэй -- эсвэл :func:`reload` функцийг 
+   ашиглан дахин ачаалж болно. ``reload(modulename)`` гэх мэт.
 
 
 .. _tut-modulesasscripts:
