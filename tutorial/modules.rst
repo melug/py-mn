@@ -152,23 +152,23 @@ The Module Search Path
 
 .. index:: triple: module; search; path
 
-When a module named :mod:`spam` is imported, the interpreter searches for a file
-named :file:`spam.py` in the current directory, and then in the list of
-directories specified by the environment variable :envvar:`PYTHONPATH`.  This
-has the same syntax as the shell variable :envvar:`PATH`, that is, a list of
-directory names.  When :envvar:`PYTHONPATH` is not set, or when the file is not
-found there, the search continues in an installation-dependent default path; on
-Unix, this is usually :file:`.:/usr/local/lib/python`.
+:mod:`spam` нэртэй модуль импортлоход, интерпретер нь :file:`spam.py` нэртэй 
+файлыг тухайн директороос хайдаг мөн түүнчлэн :envvar:`PYTHONPATH` орчны 
+хувьчагчид заасан толины жагсаалтаас ч бас асуудаг. Энэ орчны хувьсагч нь 
+:envvar:`PATH` хувьсагчтай адилхан синтакстай бөгөөд директорын нэрийн 
+жагсаалт байна. :envvar:`PYTHONPATH` орчны хувьсагчийг тодорхойлоогүй үед, 
+эсвэл файл олдоогүй үед хайлтыг үргэлжлүүлэн суулгах анхны зам болох 
+:file:`.:/usr/local/lib/python` (Unix дээр ихэвчлэн ийм байдаг) -ээс
+хайдаг.
 
-Actually, modules are searched in the list of directories given by the variable
-``sys.path`` which is initialized from the directory containing the input script
-(or the current directory), :envvar:`PYTHONPATH` and the installation- dependent
-default.  This allows Python programs that know what they're doing to modify or
-replace the module search path.  Note that because the directory containing the
-script being run is on the search path, it is important that the script not have
-the same name as a standard module, or Python will attempt to load the script as
-a module when that module is imported. This will generally be an error.  See
-section :ref:`tut-standardmodules` for more information.
+Үнэн хэрэгтээ, модулиудыг директорын жагсаалтыг бидэнд өгөх оролтын 
+скриптээс утга олгогдсон ``sys.path`` хувьсагчаас(эсвэл ажиллаж байгаа директор),
+:envvar:`PYTHONPATH` болон суулгацын анхны замаас хайдаг байна. Энэ нь Пайтон 
+програмд модулийн хайх замыг өөрчлөх болон солихыг зөвшөөрдөг.Гэхдээ та эдгээр 
+хайх замууд дотор болон стандарт модультай адилхан нэртэй файл бичиж болохгүйг 
+анхаарах хэрэгтэй эсвэл Пайтон нь скриптыг ачаалах оролдлого хийхэд аль хэдийн
+импортлосон байх юм. Энэ тохиолдолд ерөнхийдөө алдаа өгнө. Илүү дэлгэрэнгүй
+мэдээллийг :ref:`tut-standardmodules` -аас үзнэ үү.
 
 
 "Compiled" Python files
@@ -535,8 +535,8 @@ Packages in Multiple Directories
 файл доторх код ажиллахаас өмнө анхны утга олгогдсон байдаг.Энэ хувьсагчийн
 утга нь тухайн багцад байгаа модулиудыг хайхад өөрчлөгдсөн байдаг .
 
-While this feature is not often needed, it can be used to extend the set of
-modules found in a package.
+Хэдийгээр энэ боломж нь тэгтлээ өргөн хэрэглэгддэггүй ч гэсэн үүнийг 
+багц дахь модулиудыг өргөтгөх замаар хэрэглэж болно.
 
 
 .. rubric:: Footnotes
