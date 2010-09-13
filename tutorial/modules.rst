@@ -193,18 +193,18 @@ The Module Search Path
 
 Экспертүүдэд хэдэн зөвлөмж:
 
-* When the Python interpreter is invoked with the :option:`-O` flag, optimized
-  code is generated and stored in :file:`.pyo` files.  The optimizer currently
-  doesn't help much; it only removes :keyword:`assert` statements.  When
-  :option:`-O` is used, *all* :term:`bytecode` is optimized; ``.pyc`` files are
-  ignored and ``.py`` files are compiled to optimized bytecode.
+* Пайтон интерпретерийг -O сонголттой дуудсан тохиолдолд сайжруулагдсан код нь
+  үүсгэгдэн :file:`.pyo` файлуудад хадгалагддаг. Энэ сайжруулагч нь нэг их тус
+  хүргэхгүй, зөвхөн :keyword:`assert` илэрхийллүүдийг л хасдаг. :option:`-O`
+  сонголтыг хэрэглэх үед *бүх* :term:`bytecode` нь сайжруулагдана; ``.pyc``
+  файлуудыг нь алгасан ``.py`` файлууд нь сайжруулагдсан байткод руу хөрүүлэгддэг.
 
-* Passing two :option:`-O` flags to the Python interpreter (:option:`-OO`) will
-  cause the bytecode compiler to perform optimizations that could in some rare
-  cases result in malfunctioning programs.  Currently only ``__doc__`` strings are
-  removed from the bytecode, resulting in more compact :file:`.pyo` files.  Since
-  some programs may rely on having these available, you should only use this
-  option if you know what you're doing.
+* 2 ширхэг :option:`-O` флагтай Пайтон интерпретер нь(:option:`-OO`)  байт код
+  хөрвүүлэгчид зарим жижиг програмын хааяа л хэрэглэдэг үр дүнгүүдийг хасахаар
+  зааж өгдөг. Одоогоор байт кодоос ``__doc__`` тэмдэгтүүдийг хасдаг ба үр дүнд
+  нь илүү авсаархан :file:`.pyo` файлуудыг гаргадаг. Зарим програмд эдгээр 
+  зүйлсийг хэрэглэх нь зөв гэж үзсэн бол энэхүү сонголтыг хэрэглэх нь тохиромжтой
+  юм.
 
 * A program doesn't run any faster when it is read from a :file:`.pyc` or
   :file:`.pyo` file than when it is read from a :file:`.py` file; the only thing
