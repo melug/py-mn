@@ -206,27 +206,25 @@ The Module Search Path
   зүйлсийг хэрэглэх нь зөв гэж үзсэн бол энэхүү сонголтыг хэрэглэх нь тохиромжтой
   юм.
 
-* A program doesn't run any faster when it is read from a :file:`.pyc` or
-  :file:`.pyo` file than when it is read from a :file:`.py` file; the only thing
-  that's faster about :file:`.pyc` or :file:`.pyo` files is the speed with which
-  they are loaded.
+* Програм нь :file:`.pyc` эсвэл :file:`.pyo` файл нь :file:`.py` файлаасаа уншин
+  ажилахдаа хурдан ажилладаггүй; :file:`.pyc` эсвэл :file:`.pyo` файлууд нь 
+  ачаалагдсан бол хурдан ажилладаг.
 
-* When a script is run by giving its name on the command line, the bytecode for
-  the script is never written to a :file:`.pyc` or :file:`.pyo` file.  Thus, the
-  startup time of a script may be reduced by moving most of its code to a module
-  and having a small bootstrap script that imports that module.  It is also
-  possible to name a :file:`.pyc` or :file:`.pyo` file directly on the command
-  line.
+* Скриптийг командын мөрөөс нэрийг нь өгөн ажиллуулах үед, байткодод зориулсан
+  :file:`.pyc` эсвэл :file:`.pyo` файл руу хэзээ ч бичилт хийдэггүй. Тиймээс
+  модулийн кодыг зөөх болон жижиг эхлүүлэгч програм руу модулийг импортлох 
+  скриптийн эхлэх хугацааг багасгадаг.Ингэснээр та командын мөрөөс шууд
+  :file:`.pyc` эсвэл :file:`.pyo` шууд ашиглаж болно. 
 
-* It is possible to have a file called :file:`spam.pyc` (or :file:`spam.pyo`
-  when :option:`-O` is used) without a file :file:`spam.py` for the same module.
-  This can be used to distribute a library of Python code in a form that is
-  moderately hard to reverse engineer.
+* :file:`spam.pyc` нэртэй файл нь (эсвэл :option:`-O` сонголт 
+  хэрэглэсэн үед :file:`spam.pyo` ) :file:`spam.py` файлтай ижил модуль байна.
+  Энэ нь таны Пайтон кодыг тараахад хэрэг болох ба реверс енжинээр хийхэд
+  хэцүү болно.
 
   .. index:: module: compileall
 
-* The module :mod:`compileall` can create :file:`.pyc` files (or :file:`.pyo`
-  files when :option:`-O` is used) for all modules in a directory.
+* :mod:`compileall` модуль нь :file:`.pyc` файлуудыг  (эсвэл :option:`-O` 
+  сонголт хэрэглэсэн үед :file:`spam.pyo` ) бүх модулийн директорт үүсгэдэг.
 
 
 .. _tut-standardmodules:
@@ -236,17 +234,19 @@ Standard Modules
 
 .. index:: module: sys
 
-Python comes with a library of standard modules, described in a separate
-document, the Python Library Reference ("Library Reference" hereafter).  Some
-modules are built into the interpreter; these provide access to operations that
-are not part of the core of the language but are nevertheless built in, either
-for efficiency or to provide access to operating system primitives such as
-system calls.  The set of such modules is a configuration option which also
-depends on the underlying platform For example, the :mod:`winreg` module is only
-provided on Windows systems. One particular module deserves some attention:
-:mod:`sys`, which is built into every Python interpreter.  The variables
-``sys.ps1`` and ``sys.ps2`` define the strings used as primary and secondary
-prompts::
+Пайтон нь стандарт модулиудын сангуудтай бөгөөд түүнийг Python Library 
+Reference("Library Reference" дараа үзнэ ) баримтжуулалт болгон салгасан.
+Зарим модулиуд нь интерпретерт суурилсан байдаг;
+document, the Python Library Reference ("Library Reference" hereafter). 
+Зарим модулиуд нь гүйцэтгэгчийг байгуулдаг бөгөөд эдгээр нь хэлний гол
+хэсгээр хандаж чаддаггүй гэвч эдгээр нь байгуулж чаддаг доорх хоёрыг 
+үр дүн болон үйлдлийн системд хандах эрхээр хангадаг системийн дуудалт юм.
+system calls. Цогц модулиуд бол тохиргооны сонголт бөгөөд тэр нь платформын
+үндсэнд байдаг. Жишээлбэл, :mod:`winreg` модуль нь зөвхөн Windows системд 
+байдаг. Нэг тодорхой модульд зарим анхаарал хандуул:
+:mod:`sys`, Пайтон интерпретер бүр дээр суурилсан. ``sys.ps1`` ба ``sys.ps2``
+хувьсагчууд нь тэмдэгтүүдийг анхдагч болон хоёрдогч prompt болгон тодорхойлоход
+хэрэглэдэг::
 
    >>> import sys
    >>> sys.ps1
@@ -259,13 +259,13 @@ prompts::
    C>
 
 
-These two variables are only defined if the interpreter is in interactive mode.
+Эдгээр хоёр хувьсагчууд нь зөвхөн интерпретерийн харилцах горимд тодорхойлогдсон.
 
-The variable ``sys.path`` is a list of strings that determines the interpreter's
-search path for modules. It is initialized to a default path taken from the
-environment variable :envvar:`PYTHONPATH`, or from a built-in default if
-:envvar:`PYTHONPATH` is not set.  You can modify it using standard list
-operations::
+``sys.path`` хувьсагч бол тэмдэгтийн жагсаалт байх ба энэ нь интерпретерийн 
+модулын зам хайхад хэрэглэгдэнэ. Анхны зам нь :envvar:`PYTHONPATH` орчны 
+хувьсагчаас утга нь олгогдсон байдаг, эсвэл :envvar:`PYTHONPATH` тохируулаагүй
+бол ажилласан замаа авдаг. Та энэ стандарт жагсаалтыг засахдаа дараах үйлдлийг 
+хийнэ::
 
    >>> import sys
    >>> sys.path.append('/ufs/guido/lib/python')
@@ -346,22 +346,20 @@ Packages
 
 Пакежууд бол Пайтонгийн модулийн нэрийн мужийг бүтэцлэх арга ба "цэгчилсэн модулийн 
 нэр"-тэй.Жишээлбэл, :mod:`A.B` гэсэн модулийн нэр бол ``A`` гэсэн багцын
-``B`` гэсэн дэд модуль байна. Just like the use of modules saves the
-authors of different modules from having to worry about each other's global
-variable names, the use of dotted module names saves the authors of multi-module
-packages like NumPy or the Python Imaging Library from having to worry about
-each other's module names.
+``B`` гэсэн дэд модуль байна. Яг үүнтэй адилхан зохиогч нь хувьсагч хэрэглэхдээ
+өөр модулийн хувьсагчаас ялгаатай нэрлэх гэж санаа зовсны хэрэггүй, цэгтэй нэр 
+хэрэглэн Numpy эсвэл Python Зургийн сан шиг олон модуль болгон салгаж модуль доторх 
+зүйлүүд бусад модулиас хамааралгүй болно.
 
-Suppose you want to design a collection of modules (a "package") for the uniform
-handling of sound files and sound data.  There are many different sound file
-formats (usually recognized by their extension, for example: :file:`.wav`,
-:file:`.aiff`, :file:`.au`), so you may need to create and maintain a growing
-collection of modules for the conversion between the various file formats.
-There are also many different operations you might want to perform on sound data
-(such as mixing, adding echo, applying an equalizer function, creating an
-artificial stereo effect), so in addition you will be writing a never-ending
-stream of modules to perform these operations.  Here's a possible structure for
-your package (expressed in terms of a hierarchical filesystem)::
+Дууны файл, дууны өгөгдлийн нэгэн хэвийн загварт зориулсан модулийн цуглуулга 
+бичих гэж үзье. Тэнд маш олон ялгаатай дууны файлын форматууд(ихэвчлэн танихдаа
+файлынх нь өргөтгөлөөр нь таньдаг, жишээлбэл: :file:`.wav`,:file:`.aiff`, 
+:file:`.au`), тэгэхээр чи ялгаатай файлын форматуудын хоорондох холбоог үүсгэхийн
+тулд магадгүй модулийн багц үүсгэх хэрэгтэй. Тэдгээр маш олон ялгаатай үйлдлүүд 
+байх ба магадгүй чи дууны өгөгдлийг хэлбэржүүлэхийг хүсэж болох юм(холих, 
+цуурай нэмэх,тэнцвэржүүлэгч хэрэглэх, стерео эффект нэмэ ), ингээд чи нэмж хэзээ
+ч төгсөшгүй модулийн урсгалыг бичин эдгээр үйлдлийг хийж болно. Дараах бүтцээр
+үүнийг хийж болно(файлын системийн шатлалыг томъёолов)::
 
    sound/                          Хамгийн дээд түвшний багч
          __init__.py               sound  багцийн байгуулагч
@@ -390,15 +388,14 @@ your package (expressed in terms of a hierarchical filesystem)::
 Багцыг импортлохдоо Пайтан ``sys.path`` ашиглан директоруудыг олон цааш нь
 дэд директор луу ч нэвтрэн хайдаг.
 
-The :file:`__init__.py` files are required to make Python treat the directories
-as containing packages; this is done to prevent directories with a common name,
-such as ``string``, from unintentionally hiding valid modules that occur later
-on the module search path. In the simplest case, :file:`__init__.py` can just be
-an empty file, but it can also execute initialization code for the package or
-set the ``__all__`` variable, described later.
+:file:`__init__.py` файлууд нь директорийг Пайтон багц болгоход шаардлагатай;
+энэ нь директорыг нийтлэг нэр болгон анхааруулна, яг л ``string`` шиг, 
+санамсаргүйгээр зөв модулийг хайх замд нуух тохиолдол байдаг. Хамгийн энгийн
+тохиолдолд, :file:`__init__.py`  файл нь хоосон  файл байж болно, гэвч утга 
+багцад зориулсан эсвэл ``__бүх__`` хувьсагчийн утга олгох үйлдлийг энэ файлд
+бичин ажиллуулж болно.
 
-Users of the package can import individual modules from the package, for
-example::
+Хэрэглэгчийн өөрийн хувийн модулийг багцаас импортлож болно жишээлбэл::
 
    import sound.effects.echo
 
@@ -425,18 +422,16 @@ example::
 
    echofilter(input, output, delay=0.7, atten=4)
 
-Note that when using ``from package import item``, the item can be either a
-submodule (or subpackage) of the package, or some  other name defined in the
-package, like a function, class or variable.  The ``import`` statement first
-tests whether the item is defined in the package; if not, it assumes it is a
-module and attempts to load it.  If it fails to find it, an :exc:`ImportError`
-exception is raised.
 
-Contrarily, when using syntax like ``import item.subitem.subsubitem``, each item
-except for the last must be a package; the last item can be a module or a
-package but can't be a class or function or variable defined in the previous
-item.
+``from package import item`` ингэж ашиглаж байгаа үед, item нь багцын дэд модуль
+(эсвэл дэд багч), эсвэл багцад тодорхойлогдсон функц, класс, хувьсагч байж болно 
+гэдгийг анхаарах хэрэгтэй. ``import`` илэрхийлэл нь item багцад тодорхойлогдсон
+эсвэл тодорхойлогдоогүй байсан ч ялгаагүй хамгийн эхэнд модулийг импортлох
+оролдлого хийдэг. Хэрэв хайлт амжилтгүй болвол :exc:`ImportError` алдаа үзүүлдэг.
 
+Эсрэгээр ``import item.subitem.subsubitem`` синтакс хэрэглэж байгаа бол , item бүр 
+нь багцыг үл тооцон хамгийн сүүд байна; сүүлийн item модуль эсвэл багц байж
+чадна гэхдээ класс эсвэл функц эсвэл өмнө тодорхойлсон хувьсагч байж болохгүй.
 
 .. _tut-pkg-import-star:
 
@@ -444,6 +439,8 @@ Importing \* From a Package
 ---------------------------
 
 .. index:: single: __all__
+
+Хэрэглэгч ``from sound.effects import *`` ингэж бичвэл юу болох вэ? Онолын үүднээс,
 
 Now what happens when the user writes ``from sound.effects import *``?  Ideally,
 one would hope that this somehow goes out to the filesystem, finds which
