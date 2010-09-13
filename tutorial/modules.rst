@@ -174,22 +174,24 @@ The Module Search Path
 "Compiled" Python files
 -----------------------
 
-As an important speed-up of the start-up time for short programs that use a lot
-of standard modules, if a file called :file:`spam.pyc` exists in the directory
-where :file:`spam.py` is found, this is assumed to contain an
-already-"byte-compiled" version of the module :mod:`spam`. The modification time
-of the version of :file:`spam.py` used to create :file:`spam.pyc` is recorded in
-:file:`spam.pyc`, and the :file:`.pyc` file is ignored if these don't match.
+Стандарт модулийг ихэвчлэн хэрэглэдэг жижиг хэмжээний програмуудын хувьд
+програм эхлэх цагыг илүү хурдан болгохын тулд :file:`spam.py` файлын 
+директор дотор :file:`spam.pyc` нэртэй файл байх бөгөөд энэ нь :mod:`spam`
+модулийн "байт руу хөрвүүлэгдсэн" хувилбар юм. :file:`spam.py` файлын
+засварлалт бүрд :file:`spam.pyc` файлыг үүсгэх ба өөрчлөлт болгон нь бичигдэж
+байдаг бөгөөд өмнөх хөрвүүлэгдсэн файлтай ижилхэн байвал :file:`.pyc` юу ч 
+өөрчлөхгүй. 
 
-Normally, you don't need to do anything to create the :file:`spam.pyc` file.
-Whenever :file:`spam.py` is successfully compiled, an attempt is made to write
-the compiled version to :file:`spam.pyc`.  It is not an error if this attempt
-fails; if for any reason the file is not written completely, the resulting
-:file:`spam.pyc` file will be recognized as invalid and thus ignored later.  The
-contents of the :file:`spam.pyc` file are platform independent, so a Python
-module directory can be shared by machines of different architectures.
+Энгийнээр хэлбэл, :file:`spam.pyc` файлыг үүсгэх гэж юу ч хийх хэрэггүй.
+Хэдийд ч хамаагүй :file:`spam.py` файл амжилттай хөрвүүлэгдэх үед хөрвүүлэгдсэн
+:file:`spam.pyc` файл руу бичих оролдлого хийдэг. Оролдлого нь амжилтгүй болвол
+энэ нь алдаа гарсан гэсэн үг; эсвэл ямар нэг шалтгаанаар файл гүйцэд бичилт 
+хийж чадаагүй байж болно, энэ тохиолдолд :file:`spam.pyc` файл нь танигдахгүй.
+:file:`spam.pyc` файлын агуулга нь платформ хамааралгүй, тэгэхээр Пайтонгийн
+модуль нь өөр архитектурын машин дээр хуваагдсан байж болно.
 
-Some tips for experts:
+
+Экспертүүдэд хэдэн зөвлөмж:
 
 * When the Python interpreter is invoked with the :option:`-O` flag, optimized
   code is generated and stored in :file:`.pyo` files.  The optimizer currently
