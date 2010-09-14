@@ -510,20 +510,21 @@ echofilter`` хялбархан хэрэглэнэ. Хэрэв импортло�
 багцад байгаа :mod:`echo` модулийг ашиглах бол,дараах байдлаар бичиж болно ``from
 sound.effects import echo``.
 
-Starting with Python 2.5, in addition to the implicit relative imports described
-above, you can write explicit relative imports with the ``from module import
-name`` form of import statement. These explicit relative imports use leading
-dots to indicate the current and parent packages involved in the relative
-import. From the :mod:`surround` module for example, you might use::
+Пайтон 2.5-аас эхлэн, тодорхойгүй  харьцангуй импортыг нэмж оруулсан, 
+та харьцангуй импорт бичих дээ ``from module import name`` гэсэн 
+хэлбэртэйгээр импорт илэрхийлэл бичиж болно. Эдгээр тодорхой харьцангуй
+импортууд нь цэгээр тодорхойлсон одоогийн болон эцэг багцуудыг харьцангуй
+импорт болгодог. Жишээн дээр :mod:`surround` модулийг дараах байдалтай 
+ашиглаж болно::
 
    from . import echo
    from .. import formats
    from ..filters import equalizer
 
-Note that both explicit and implicit relative imports are based on the name of
-the current module. Since the name of the main module is always ``"__main__"``,
-modules intended for use as the main module of a Python application should
-always use absolute imports.
+Тодорхой болон тодорхойгүй харьцангуй импортууд нь хоёулаа одоогийн модулийн
+нэрэн дээр суурилсан байдаг гэдгийг анхаарах хэрэгтэй. Үндсэн модулийн нэр нь 
+үргэлж ``"__main__"`` байдаг болсноос хойш, Пайтон програмууд нь үргэлж 
+харьцангуй импорт хэрэглэдэг болсон. 
 
 
 Олон директор дахь багцууд
