@@ -1,29 +1,31 @@
 .. _tut-brieftourtwo:
 
-*********************************************
-Brief Tour of the Standard Library -- Part II
-*********************************************
+**********************************************
+Стандарт сангуудаар аялах товч аялал 2-р хэсэг
+**********************************************
 
-This second tour covers more advanced modules that support professional
-programming needs.  These modules rarely occur in small scripts.
+Энэхүү хоёрдахь аялалаараа мэргэжлийн програмчлалын хэрэгцээг хангасан
+илүү ахисан түвшний модулиудыг танилцуулах болно. Эдгээр модуль ховорхон
+тохиолдох жижиг скритүүд юм.
 
 
 .. _tut-output-formatting:
 
-Output Formatting
-=================
+Гаралтын хэвжүүлэлт
+===================
 
-The :mod:`repr` module provides a version of :func:`repr` customized for
-abbreviated displays of large or deeply nested containers::
+:mod:`repr` модуль нь :func:`repr` функцийн сайжруулсан хувилбар бөгөөд 
+том хэмжээний дэлгэц эсвэл гүнд задарсан агуулахыг багасгах зорилготой
+юм::
 
    >>> import repr
    >>> repr.repr(set('supercalifragilisticexpialidocious'))
    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
 
-The :mod:`pprint` module offers more sophisticated control over printing both
-built-in and user defined objects in a way that is readable by the interpreter.
-When the result is longer than one line, the "pretty printer" adds line breaks
-and indentation to more clearly reveal data structure::
+:mod:`pprint` модуль нь байгуулагдсан болон хэрэглэгчийн тодорхойлсон объектыг
+интерпретер дээр илүү ойлгомжтой үзүүлэхэд өндөр мэдрэмжтэй удирддаг.
+Үр дүн нь нэг мөрөөс илүү их болох үед, "сайн принтер нь" өгөгдлийн бүтцийг
+илрүүлэн зэрэгцүүлэлт хийх болон таслах мөр нэмдэг::
 
    >>> import pprint
    >>> t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta',
@@ -36,8 +38,8 @@ and indentation to more clearly reveal data structure::
      [['magenta', 'yellow'],
       'blue']]]
 
-The :mod:`textwrap` module formats paragraphs of text to fit a given screen
-width::
+:mod:`textwrap` модуль нь параграф текстийг өгөгдсөн дэлгэцийн өргөнд тааруулж
+хэвжүүлдэг::
 
    >>> import textwrap
    >>> doc = """The wrap() method is just like fill() except that it returns
@@ -50,9 +52,10 @@ width::
    instead of one big string with newlines
    to separate the wrapped lines.
 
-The :mod:`locale` module accesses a database of culture specific data formats.
-The grouping attribute of locale's format function provides a direct way of
-formatting numbers with group separators::
+:mod:`locale` модуль соёл боловсролын тусгай өгөгдлийн форматын өгөгдлийн сан
+руу ханддаг.
+Локалийн формат функцийн аттрибутийг бүлэглэн хэвжүүлэлтийн дугаараар шууд
+хандах боломж олгодог::
 
    >>> import locale
    >>> locale.setlocale(locale.LC_ALL, 'English_United States.1252')
@@ -71,9 +74,9 @@ formatting numbers with group separators::
 Templating
 ==========
 
-The :mod:`string` module includes a versatile :class:`Template` class with a
-simplified syntax suitable for editing by end-users.  This allows users to
-customize their applications without having to alter the application.
+:mod:`string` модуль нь төрөл бүрийн :class:`Template` классд багтдаг бөгөөд
+эцсийн хэрэглэгчээр засуулахад зориулан бичиглэлийг хялбарчилдаг. Ингэснээр
+хэрэглэгч нь өөрийн програмаа өөр програмтай нэгтгэн сайжруулахад тус болно.
 
 The format uses placeholder names formed by ``$`` with valid Python identifiers
 (alphanumeric characters and underscores).  Surrounding the placeholder with

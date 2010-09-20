@@ -11,7 +11,7 @@ More Control Flow Tools
 
 .. _tut-if:
 
-:keyword:`if` Statements
+:keyword:`if` илэрхийлэл
 ========================
 
 Голчлон хэрэглэгддэг илэрхийллүүдийн нэг бол :keyword:`if` илэрхийлэл юм.  Жишээ::
@@ -39,7 +39,7 @@ More Control Flow Tools
 
 .. _tut-for:
 
-:keyword:`for` Statements
+:keyword:`for` илэрхийлэл
 =========================
 
 .. index::
@@ -78,8 +78,8 @@ More Control Flow Tools
 
 .. _tut-range:
 
-The :func:`range` Function
-==========================
+The :func:`range` функц
+=======================
 
 Хэрэв та тоо өгөн түүгээр дараал үүсгэх бол :func:`range` өгөгдсөн тоогоор 
 дараалал үүсгэнэ.  Дараалал үүсгэхдээ арифметик прогрессоор үүсгэнэ::
@@ -116,8 +116,8 @@ The :func:`range` Function
 
 .. _tut-break:
 
-:keyword:`break` and :keyword:`continue` Statements, and :keyword:`else` Clauses on Loops
-=========================================================================================
+:keyword:`break` ба :keyword:`continue` илэрхийллүүд, болон :keyword:`else` нөхцөл давталт дээр
+===============================================================================================
 
 :keyword:`break` илэрхийлэл нь яг С хэлэн байдаг шиг :keyword:`for` болон 
 :keyword:`while` давталтанд дотор зогсоох үйлдлийг хийдэг.
@@ -149,7 +149,7 @@ The :func:`range` Function
 
 .. _tut-pass:
 
-:keyword:`pass` Statements
+:keyword:`pass` илэрхийлэл
 ==========================
 
 The :keyword:`pass` илэрхийлэл нь юу ч хийхгүй. Тодорхой шаардлагаар ямар ч үйлдэл хийхгүй зөвхөн синтаксийн шаардлагаар юм бичих тохиолдолд хэрэглэж болно.Жишээлбэл::
@@ -278,8 +278,8 @@ This example, as usual, demonstrates some new Python features:
 
 .. _tut-defining:
 
-More on Defining Functions
-==========================
+Функц зарлах илүү дэлгэрэнгүй
+=============================
 
 Функц тодорхойлохдоо ялгаатай аргументууд өгөх боломжтой.
 Ийм гурван хэлбэр байдаг, тэр нь хоорондоо хосолж болно.
