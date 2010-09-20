@@ -78,21 +78,21 @@ Templating
 эцсийн хэрэглэгчээр засуулахад зориулан бичиглэлийг хялбарчилдаг. Ингэснээр
 хэрэглэгч нь өөрийн програмаа өөр програмтай нэгтгэн сайжруулахад тус болно.
 
-The format uses placeholder names formed by ``$`` with valid Python identifiers
-(alphanumeric characters and underscores).  Surrounding the placeholder with
-braces allows it to be followed by more alphanumeric letters with no intervening
-spaces.  Writing ``$$`` creates a single escaped ``$``::
+Формат нь байралын нэр ашиглахдаа Пайтонд таниулахын тулд ``$`` тэмдэг
+ашигладаг байна.(альфа тооны тэмдэгтүүд болон доогуур зураас) Байрлалын
+нэрээ угалзан хаалтаар хаах бөгөөд араас нь тэмдэгтүүд завсрын зайгүй 
+хэрэглэж болно. ``$`` бичихдээ ``$$`` бичнэ:: 
 
    >>> from string import Template
    >>> t = Template('${village}folk send $$10 to $cause.')
    >>> t.substitute(village='Nottingham', cause='the ditch fund')
    'Nottinghamfolk send $10 to the ditch fund.'
 
-The :meth:`substitute` method raises a :exc:`KeyError` when a placeholder is not
-supplied in a dictionary or a keyword argument. For mail-merge style
-applications, user supplied data may be incomplete and the
-:meth:`safe_substitute` method may be more appropriate --- it will leave
-placeholders unchanged if data is missing::
+:meth:`substitue` метод нь толь эсвэл гарнаас өгсөн аргументад байрлалын нэр
+өгөгдөөгүй бол :exc:`KeyError` алдаа өгдөг. Майл нийлүүлэх стилийн програмд 
+хэрэглэгч өгөгдлөө бүрэн бус өгж болох ба :meth:`safe_substitute` метод нь
+энэ тохиолдолд магадгүй илүү тохиромжтой байж болно--- хэрэв өгөгдөл өгөгдөөгүй
+бол өөрчлөгдөөгүй нэрийг орхиод явна::
 
    >>> t = Template('Return the $item to $owner.')
    >>> d = dict(item='unladen swallow')
@@ -103,9 +103,10 @@ placeholders unchanged if data is missing::
    >>> t.safe_substitute(d)
    'Return the unladen swallow to $owner.'
 
-Template subclasses can specify a custom delimiter.  For example, a batch
-renaming utility for a photo browser may elect to use percent signs for
-placeholders such as the current date, image sequence number, or file format::
+Загвар дэд класс нь тусгайлан хувийн өгөгдлийн хязгаарлагч болж чадна.
+Жишээлбэл, фото хөтөчид зориулсан нэрлэх багаж хэрэгсэл нь одоогийн он
+сар, зургийн давтамжийн дугаар, эсвэл файлын формат гэх мэт байрлалын
+нэрүүдэд хувийн тэмдэг ашиглахаар сонгож болно::
 
    >>> import time, os.path
    >>> photofiles = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
@@ -125,9 +126,10 @@ placeholders such as the current date, image sequence number, or file format::
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
-Another application for templating is separating program logic from the details
-of multiple output formats.  This makes it possible to substitute custom
-templates for XML files, plain text reports, and HTML web reports.
+Загварт зориулсан өөр програмд програмын логикыг олон гаралтын форматын 
+дэлгэрэнгүйгээс салгахын тулд хэрэглэдэг. Энэ нь хувийн загварт тохирсон 
+XML файлууд, энгийн текст тайлангууд, HTML веб тайлангуудыг үүсгэх 
+боломжтой гэсэн үг. 
 
 
 .. _tut-binary-formats:
