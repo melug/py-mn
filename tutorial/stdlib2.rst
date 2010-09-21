@@ -347,24 +347,24 @@ not want to run a full list sort::
 
 .. _tut-decimal-fp:
 
-Decimal Floating Point Arithmetic
-=================================
+Бутархай хөвөгч тооны арифметик
+===============================
 
-The :mod:`decimal` module offers a :class:`Decimal` datatype for decimal
-floating point arithmetic.  Compared to the built-in :class:`float`
-implementation of binary floating point, the class is especially helpful for
+:mod:`decimal` модуль нь :class:`Decimal` гэсэн классыг бутархай хөвөгч 
+арифметик тооны өгөгдлийн төрлийг дүрслэхэд санал болгодог. Хоёртын хөвөгч
+тоог хэрэгжүүлэх :class:`float` классыг харьцуулсан ба энэ класс нь тусгайлан
+танд дараах зүйлийг хийхэд туслана
 
-* financial applications and other uses which require exact decimal
-  representation,
-* control over precision,
-* control over rounding to meet legal or regulatory requirements,
-* tracking of significant decimal places, or
-* applications where the user expects the results to match calculations done by
-  hand.
+* санхүүгийн програм болон бусад хэрэглээнд бутархай тоог яг нарийвлалтайгаар
+  үзүүлэх
+* нарийвчлалийг удирдах 
+* албан ёсны эсвэл захиргааны шаардлагаар шатлалыг удирдах
+* ач холбогдолтой бутархай хэсгийг ажиглах эсвэл
+* хэрэглэгч тооцооллын үр дүнг програмаас хүсэх
 
-For example, calculating a 5% tax on a 70 cent phone charge gives different
-results in decimal floating point and binary floating point. The difference
-becomes significant if the results are rounded to the nearest cent::
+Жишээлбэл, утас цэнэглэсний хөлс 70 центээ татвар нь 5 хувийг бодохдоо 
+бутархай хөвөгч тоо болон хоёртын хөвөгч тооноос ялгаатай үр дүн гарна. 
+Энэ ялгаа нь хэрэв үр дүнг ойролцоо цент руу дугуйлсан бол гарна::
 
    >>> from decimal import *
    >>> x = Decimal('0.70') * Decimal('1.05')
@@ -375,13 +375,13 @@ becomes significant if the results are rounded to the nearest cent::
    >>> round(.70 * 1.05, 2)         # same calculation with floats
    0.73
 
-The :class:`Decimal` result keeps a trailing zero, automatically inferring four
-place significance from multiplicands with two place significance.  Decimal
-reproduces mathematics as done by hand and avoids issues that can arise when
-binary floating point cannot exactly represent decimal quantities.
+:class:`Decimal` класс нь үр дүнд тэгийг хадгалдаг, автоматаар хоёр оронтой
+хэмжээний үржигдэхүүн дөрвөн хэмжээг боддог. Бутархай нь танд математикийг 
+сэргээх ба хоёртын хөвөгч тоо нь бутархайн чанарыг яг нарийн үзүүлж чадахгүй
+үед энэ асуудлыг шийдэж өгөх болно.
 
-Exact representation enables the :class:`Decimal` class to perform modulo
-calculations and equality tests that are unsuitable for binary floating point::
+Нарийвчлалтай үзүүлэхдээ :class:`Decimal` классыг өөрийн тооцооллын модульдаа
+хэрэгжүүлэх ба хоёртын хөвөгч тоонд тохиронхгүй гэдгийг шалгаж болно::
 
    >>> Decimal('1.00') % Decimal('.10')
    Decimal('0.00')
@@ -393,7 +393,7 @@ calculations and equality tests that are unsuitable for binary floating point::
    >>> sum([0.1]*10) == 1.0
    False
 
-The :mod:`decimal` module provides arithmetic with as much precision as needed::
+:mod:`decimal` модуль арифметикийн яг нарийвчилсан хариуг гаргахад хэрэг болдог::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
