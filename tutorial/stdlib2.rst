@@ -167,13 +167,14 @@ standard size and in little-endian byte order::
 Multi-threading
 ===============
 
-Threading is a technique for decoupling tasks which are not sequentially
-dependent.  Threads can be used to improve the responsiveness of applications
-that accept user input while other tasks run in the background.  A related use
-case is running I/O in parallel with computations in another thread.
+Threading бол дараалсан хамааралгүйгээр хосоор ажиллуулах текник юм.
+Threads програмын мэдрэмжийг нэмэгдүүлэх бөгөөд хэрэглэгч гараас утга
+хүлээж байх хооронд арын процесст өөр ажил ажиллаж байх юм. Хоорондоо
+хамааралтай оролт гаралын паралелаар ажиллаж байгаа тохиолдолд тооцооллын
+өөр трэдтэй байдаг. 
 
-The following code shows how the high level :mod:`threading` module can run
-tasks in background while the main program continues to run::
+Дараах код нь дээд түвшний :mod:`threading` үндсэн модуль үргэлжлэн ажиллаж
+байхад ард нь хэрхэн ажиллаж чаддагыг харуулна::
 
    import threading, zipfile
 
@@ -195,13 +196,14 @@ tasks in background while the main program continues to run::
    background.join()    # Wait for the background task to finish
    print 'Main program waited until background was done.'
 
-The principal challenge of multi-threaded applications is coordinating threads
-that share data or other resources.  To that end, the threading module provides
-a number of synchronization primitives including locks, events, condition
-variables, and semaphores.
+Олон трэдтэй програмын хамгийн чухал шаардлага бол хуваасан өгөгдөл эсвэл 
+бусад нөөцийг харилцан уялдуулахад оршино. Энэ хүртэл, threading модуль нь 
+олон тооны цоож агуулсан үндсэн синхрон, эвентүүд, нөхцөлт хувьсагчууд, 
+болон семафоруудыг олгодог.
 
-While those tools are powerful, minor design errors can result in problems that
-are difficult to reproduce.  So, the preferred approach to task coordination is
+Тэдгээр хэрэгслүүд хүчирхэг байхад, бага зэргийн дизайны алдаанууд өөрөөр 
+хуулбарлан бүтээхэд асуудал үүсгэж чадна. Ийм учраас, б
+.  So, the preferred approach to task coordination is
 to concentrate all access to a resource in a single thread and then use the
 :mod:`Queue` module to feed that thread with requests from other threads.
 Applications using :class:`Queue.Queue` objects for inter-thread communication
