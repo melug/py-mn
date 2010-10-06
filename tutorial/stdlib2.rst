@@ -202,12 +202,11 @@ Threads програмын мэдрэмжийг нэмэгдүүлэх бөгө�
 болон семафоруудыг олгодог.
 
 Тэдгээр хэрэгслүүд хүчирхэг байхад, бага зэргийн дизайны алдаанууд өөрөөр 
-хуулбарлан бүтээхэд асуудал үүсгэж чадна. Ийм учраас, б
-.  So, the preferred approach to task coordination is
-to concentrate all access to a resource in a single thread and then use the
-:mod:`Queue` module to feed that thread with requests from other threads.
-Applications using :class:`Queue.Queue` objects for inter-thread communication
-and coordination are easier to design, more readable, and more reliable.
+хуулбарлан бүтээхэд асуудал үүсгэж чадна. Ийм учраас, онцгой эрхтэй дөхөлт нь
+ажил хуваарилалт хийхдээ нэг трэдээс бүх нөөц рүү хандах ба :mod:`Queue` модуль 
+нь бусад трэдээс шаардлагатай мэдээллээр хангахад тусладаг. Програмд хэрэглэхдээ
+:class:`Queue.Queue` объектийг трэд хоорондын холбоо болон зохицуулахад илүү 
+хялбар, илүү эвтэйхэн, илүү уян хатан загварчлагдсан.
 
 
 .. _tut-logging:
@@ -215,8 +214,9 @@ and coordination are easier to design, more readable, and more reliable.
 Logging
 =======
 
-The :mod:`logging` module offers a full featured and flexible logging system.
-At its simplest, log messages are sent to a file or to ``sys.stderr``::
+:mod:`logging` модуль нь бүрэн засагдсан уян хатан логийн систем юм.
+Хамгийн энгийнээр лог бичлэгийг файл эсвэл стандарт алдаа ``sys.stderr``
+руу гаргаж болно::
 
    import logging
    logging.debug('Debugging information')
@@ -225,21 +225,20 @@ At its simplest, log messages are sent to a file or to ``sys.stderr``::
    logging.error('Error occurred')
    logging.critical('Critical error -- shutting down')
 
-This produces the following output::
+Энэ нь дараах гаралтыг гаргана::
 
    WARNING:root:Warning:config file server.conf not found
    ERROR:root:Error occurred
    CRITICAL:root:Critical error -- shutting down
 
-By default, informational and debugging messages are suppressed and the output
-is sent to standard error.  Other output options include routing messages
-through email, datagrams, sockets, or to an HTTP Server.  New filters can select
-different routing based on message priority: :const:`DEBUG`, :const:`INFO`,
-:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`.
+Анхны утгаараа мэдээллийн болон дебугийн мессежийн гаралтыг стандарт алдаа 
+руу илгээдэг. Бусад гаралтын сонголтууд нь чиглүүлэх мессежэд багтдаг ба үүнд
+майл явуулах, датаграмууд, сокетууд, эсвэл HTTP сервер байж болно. Шинэ 
+шүүлтүүрүүд нь мессежний зэрэглэлээр чиглүүлэгддэг: :const:`DEBUG`, 
+:const:`INFO`,:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`.
 
-The logging system can be configured directly from Python or can be loaded from
-a user editable configuration file for customized logging without altering the
-application.
+Лог бичлэгийн систем нь Пайтонгоос шууд тохируулагддаг эсвэл хэрэглэгч өөрчлөх
+боломжтой тохиргооны файл өөрсдөө зохион бичиж болно.
 
 
 .. _tut-weak-references:
@@ -247,17 +246,18 @@ application.
 Weak References
 ===============
 
-Python does automatic memory management (reference counting for most objects and
-:term:`garbage collection` to eliminate cycles).  The memory is freed shortly
-after the last reference to it has been eliminated.
+Пайтон автомат санах ойн удирдлагатай(ихэнх объектуудын заалтыг тоолох болон
+:term:`garbage collection` -р циклийг тогтоодог). Санах ой бол сүүлийн заалт
+чөлөөлөгдсний дараа чөлөөлөгддөг.
 
-This approach works fine for most applications but occasionally there is a need
-to track objects only as long as they are being used by something else.
-Unfortunately, just tracking them creates a reference that makes them permanent.
-The :mod:`weakref` module provides tools for tracking objects without creating a
-reference.  When the object is no longer needed, it is automatically removed
-from a weakref table and a callback is triggered for weakref objects.  Typical
-applications include caching objects that are expensive to create::
+Энэ нь ихэнх програм дээр сайн ажилладаг боловч санамсаргүй тохиолдолд 
+объектийг олохдоо болон зарим нэг юманд ашиглаж болно. Харамсалтай нь 
+ингэж мөшгөхөд түүний заалтыг үүсгэдэг түүнийг тэр чигээр нь үлдээдэг.
+:mod:`weakref` модуль нь объектыг түүний заалттай нь үүсгэх хэрэгслээр 
+хангадаг. Объект нь түр хугацаанл хэрэгтэй үед сул заалтын хүснэгтээс
+хасагдах ба сул заалтын объектуудад зориулан эргэн дуудагддаг. Энгийн 
+програмууд нь объектыг кэшлэдэг бөгөөд тэр нь үүсгэхэд хэтэрхий 
+үрэлгэн болдог::
 
    >>> import weakref, gc
    >>> class A:
