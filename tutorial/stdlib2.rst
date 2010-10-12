@@ -137,12 +137,12 @@ XML файлууд, энгийн текст тайлангууд, HTML веб т
 Working with Binary Data Record Layouts
 =======================================
 
-The :mod:`struct` module provides :func:`pack` and :func:`unpack` functions for
-working with variable length binary record formats.  The following example shows
-how to loop through header information in a ZIP file without using the
-:mod:`zipfile` module.  Pack codes ``"H"`` and ``"I"`` represent two and four
-byte unsigned numbers respectively.  The ``"<"`` indicates that they are
-standard size and in little-endian byte order::
+:mod:`struct` модул нь хувьсах урттай бинари форматтай ажиллах :func:`pack` болон
+:func:`unpack` гэсэн функцүүдтэй. Дараах жишээн дээр ZIP файлын толгойн хэсгийн
+мэдээлэлд давталт хийн жишээг :mod:`zipfile` модулийн тусламжтайгаар харуулсан 
+байна. Багц ``"H"`` болон ``"I"`` кодууд нь нэрлэсэн дарааллаар хоёр болон дөрвөн
+тэмдэггүй тоог үзүүлнэ. ``"<"`` энэ нь стандарт хэмжээ болон бага эндиан байтын
+дарааллыг илэрхийлдэг::
 
    import struct
 
