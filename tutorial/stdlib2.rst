@@ -134,8 +134,8 @@ XML файлууд, энгийн текст тайлангууд, HTML веб т
 
 .. _tut-binary-formats:
 
-Working with Binary Data Record Layouts
-=======================================
+Бинари өгөгдөлтэй ажиллах
+=========================
 
 :mod:`struct` модул нь хувьсах урттай бинари форматтай ажиллах :func:`pack` болон
 :func:`unpack` гэсэн функцүүдтэй. Дараах жишээн дээр ZIP файлын толгойн хэсгийн
@@ -243,8 +243,8 @@ Logging
 
 .. _tut-weak-references:
 
-Weak References
-===============
+Нэр хүндгүй заалтууд
+====================
 
 Пайтон автомат санах ойн удирдлагатай(ихэнх объектуудын заалтыг тоолох болон
 :term:`garbage collection` -р циклийг тогтоодог). Санах ой бол сүүлийн заалт
@@ -285,18 +285,17 @@ Weak References
 
 .. _tut-list-tools:
 
-Tools for Working with Lists
-============================
+Жагсаалттай ажиллах хэрэгслүүд
+==============================
 
-Many data structure needs can be met with the built-in list type. However,
-sometimes there is a need for alternative implementations with different
-performance trade-offs.
+Олон өгөгдлийн бүтэц дээр бид жагсаалт төрөлтэй таардаг. Харин,
+зарим тохиолдолд үүнийг хийхэд арай өөр хэрэгжүүлэлт хэрэг болдог.
 
-The :mod:`array` module provides an :class:`array()` object that is like a list
-that stores only homogeneous data and stores it more compactly.  The following
-example shows an array of numbers stored as two byte unsigned binary numbers
-(typecode ``"H"``) rather than the usual 16 bytes per entry for regular lists of
-Python int objects::
+:mod:`array` модуль нь :class:`array()` объект үүсгэдэг бөгөөд энэ нь 
+яг л жагсаалт шиг зөвхөн нэг төрлийн өгөгдөл хадгалдаг бас их нягт байдаг.
+Дараах жишээ код нь хоёр байтын тэмдэггүй хоёртын тоо байдлаар жагсаалт 
+болгон (төрлийн код ``"H"``)  хадгалаад энгийн 16 байт Пайтонгийн инт объект 
+болгон ашиглаж байна::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -305,10 +304,10 @@ Python int objects::
    >>> a[1:3]
    array('H', [10, 700])
 
-The :mod:`collections` module provides a :class:`deque()` object that is like a
-list with faster appends and pops from the left side but slower lookups in the
-middle. These objects are well suited for implementing queues and breadth first
-tree searches::
+:mod:`collections` модуль нь :class:`deque()` классын объект бөгөөд жагсаалтад
+зүүн талаас нь нэмэх болон гаргадаг учир маш хурдан гэхдээ хайхад удаан байдаг.
+Эдгээр объектууд н дараалал(queue) болон өргөнөөр хайх модны хайлтыг 
+хэрэгжүүлэхэд яг таардаг::
 
    >>> from collections import deque
    >>> d = deque(["task1", "task2", "task3"])
@@ -324,9 +323,9 @@ tree searches::
                return m
            unsearched.append(m)
 
-In addition to alternative list implementations, the library also offers other
-tools such as the :mod:`bisect` module with functions for manipulating sorted
-lists::
+Нэмх хэлэхэд өөр жагсаалтын хэрэгжүүлэлтүүд нь сангийн бусад хэрэгслүүдэд 
+санал болгодог бөгөөд тэдний нэг :mod:`bisect` модуль нь функцуудийнхээ
+хамт эрэмблэгдсэн жагсаалтыг удирдахад дөхөм болдог байна.::
 
    >>> import bisect
    >>> scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
@@ -334,10 +333,11 @@ lists::
    >>> scores
    [(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
 
-The :mod:`heapq` module provides functions for implementing heaps based on
-regular lists.  The lowest valued entry is always kept at position zero.  This
-is useful for applications which repeatedly access the smallest element but do
-not want to run a full list sort::
+:mod:`heapq` модульийн функцууд нь энгийн жагсаалт дээр овоолго(heap)-ийг 
+хэрэгжүүлэх боломжийг олгодог. Хамгийн үр ашиггүй орсон утга нь үргэлж
+тэг байрлалаа хадгалдаг. Үүнийг програмд хэрэглэхэд амар бөгөөд хамгийн 
+бага элемент рүү нь шууд ханддаг гэхдээ үүнийг жагсаалтыг эрэмблэхэд 
+хэрэглэх нь тийм ч сайхан санаа биш::
 
    >>> from heapq import heapify, heappop, heappush
    >>> data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
