@@ -14,8 +14,8 @@ distinguishable kinds of errors: *syntax errors* and *exceptions*.
 Syntax Errors
 =============
 
-Syntax errors, also known as parsing errors, are perhaps the most common kind of
-complaint you get while you are still learning Python::
+Синтаксийн алдаанууд нь хөрвүүлэх алдаа ч гэдэг, Пайтон сурж эхэлж байхад
+нийтлэг тохиолддог::
 
    >>> while True print 'Hello world'
      File "<stdin>", line 1, in ?
@@ -23,12 +23,12 @@ complaint you get while you are still learning Python::
                       ^
    SyntaxError: invalid syntax
 
-The parser repeats the offending line and displays a little 'arrow' pointing at
-the earliest point in the line where the error was detected.  The error is
-caused by (or at least detected at) the token *preceding* the arrow: in the
-example, the error is detected at the keyword :keyword:`print`, since a colon
-(``':'``) is missing before it.  File name and line number are printed so you
-know where to look in case the input came from a script.
+Хөрвүүлэгч нь алдаатай мөрийн доогуур сумаар заадаг бөгөөд хамгийн анхны
+алдаа гарангуут алдааг үзүүлдэг. Алдаа нь заасан сумаас урагшаа буруу зүйл
+хийснээр болдог(эсвэл сумны ойролцоо): жишээн дээр, алдаа нь :keyword:`print`
+түлхүүр үгний ойролцоо гарсан бөгөөд өмнө нь (``':'``) бичихээ мартсан байна.
+Кодыг скрипт байдлаар ажиллуулсан тохиолдолд файлын нэр болон мөрийн дугаар
+хэвлэгддэг бөгөөд ямар алдаа хаана гарсныг нь мэдэж болно.
 
 
 .. _tut-exceptions:
@@ -36,11 +36,12 @@ know where to look in case the input came from a script.
 Exceptions
 ==========
 
-Even if a statement or expression is syntactically correct, it may cause an
-error when an attempt is made to execute it. Errors detected during execution
-are called *exceptions* and are not unconditionally fatal: you will soon learn
-how to handle them in Python programs.  Most exceptions are not handled by
-programs, however, and result in error messages as shown here::
+Илэрхийлэл болон бичиглэл нь синтаксийн ямар нэг алдаагүй боловч ажиллуулах
+үед алдаа гарч болно.Алдаанууд нь ажиллах явцад гарах алдааг *онцгой тохиодол*
+гэх бөгөөд боломжийг тооцож үзээгүй бол гарна: та удахгүй эдгээр алдааг хэрхэн
+Пайтон програмд хэрхэн барих талаар үзнэ. Ихэнх онцгой тохиолдлууд нь програм
+дээр баригдаагүй байдаг учир үр дүнд нь доор үзүүлсэн шиг алдааний мэдээллүүд
+гардаг байна::
 
    >>> 10 * (1/0)
    Traceback (most recent call last):
@@ -55,35 +56,36 @@ programs, however, and result in error messages as shown here::
      File "<stdin>", line 1, in ?
    TypeError: cannot concatenate 'str' and 'int' objects
 
-The last line of the error message indicates what happened. Exceptions come in
-different types, and the type is printed as part of the message: the types in
-the example are :exc:`ZeroDivisionError`, :exc:`NameError` and :exc:`TypeError`.
-The string printed as the exception type is the name of the built-in exception
-that occurred.  This is true for all built-in exceptions, but need not be true
-for user-defined exceptions (although it is a useful convention). Standard
-exception names are built-in identifiers (not reserved keywords).
+Сүүлийн мөр дээр алдааний мэдээлэл нь юу болснийг заасан байна. Онцгой тохиолдлууд
+ялгаатай төрөлтэй байдаг, тэр төрөл нь алдааний мэдээллийн хэсэг болж гардаг:
+жишээн дээр :exc:`ZeroDivisionError`, :exc:`NameError` болон :exc:`TypeError`
+төрлийн онцгой тохиолдлууд гарсан байна. Тодорхойлогдсон байдаг онцгой тохиолдлын
+төрөл нь хэвлэгддэг. Энэ нь бүх тодорхойлогдсон онцгой тохиолдлууд дээр хэрэгждэг
+ба хэрэглэгчийн тодорхойлсон онцгой тохиолдол дээр худал утга гаргаж болно.
+Стандарт онцгой тохиолдлын нэрүүд нь танигчаар тодорхойлогдоно.( түлхүүр үг
+нөөцлөдөггүй)
 
-The rest of the line provides detail based on the type of exception and what
-caused it.
+Алдааны мөр нь онцгой тохиолдлын төрөл дээр суурилан юунаас болж энэ алдаа
+гарсан гэдгийг дэлгэрэнгүй харуулах боломжийг олгодог.
 
-The preceding part of the error message shows the context where the exception
-happened, in the form of a stack traceback. In general it contains a stack
-traceback listing source lines; however, it will not display lines read from
-standard input.
+Алдааны мэдээллийн өмнөх хэсэг нь хаана онцгой тохиолдол гарсныг заадаг ба
+араас нь стек трэс үзүүлдэг. Ерөнхийдөө эх кодын мөрүүд нь стэк трэсбак агуулдаг
+ч гэсэн стандарт оролтоос уншсаныг дэлгэцэнд харуулдаггүй.
 
-:ref:`bltin-exceptions` lists the built-in exceptions and their meanings.
+:ref:`bltin-exceptions` тодорхойлогдсон онцгой тохиолдлууд болон тэдгээрийн 
+утгыг харж болно.
 
 
 .. _tut-handling:
 
-Handling Exceptions
-===================
+Алдаа барих
+===========
 
-It is possible to write programs that handle selected exceptions. Look at the
-following example, which asks the user for input until a valid integer has been
-entered, but allows the user to interrupt the program (using :kbd:`Control-C` or
-whatever the operating system supports); note that a user-generated interruption
-is signalled by raising the :exc:`KeyboardInterrupt` exception. ::
+Програм бичихдээ сонгогдсон онцгой тохиолдлыг барих боломжтой байдаг. Дараах
+жишээнээс харахад хэрэглэгч оролтоос буруу тоо оруулахад програм алдаа өгөн
+ажиллагааг зогсоож байна(:kbd:`Control-C` эсвэл ямар нэг үйлдлийн системийн
+үйлдэл хийхэд мөн энэ алдаа гарна) хэрэглэгчийн үүсгэсэн тасалдуулах ажиллагаа
+нь :exc:`KeyboardInterrupt` онцгой тохиолдлыг дуудна.::
 
    >>> while True:
    ...     try:
@@ -93,23 +95,22 @@ is signalled by raising the :exc:`KeyboardInterrupt` exception. ::
    ...         print "Oops!  That was no valid number.  Try again..."
    ...
 
-The :keyword:`try` statement works as follows.
+:keyword:`try` илэрхийлэл нь дараах зарчмаар ажиллана.
 
-* First, the *try clause* (the statement(s) between the :keyword:`try` and
-  :keyword:`except` keywords) is executed.
+* Эхлээд, *try нөхцөл* (:keyword:`try` ба :keyword:`except` түлхүүр үгийн
+  хоорондох код) ажиллана.
 
-* If no exception occurs, the *except clause* is skipped and execution of the
-  :keyword:`try` statement is finished.
+* Хэрэв ямар ч онцгой тохиолдол байхгүй бол *except нөхцөл* -ыг алгасан 
+  ажиллах бөгөөд :keyword:`try` илэрхийлэл дуусна.
 
-* If an exception occurs during execution of the try clause, the rest of the
-  clause is skipped.  Then if its type matches the exception named after the
-  :keyword:`except` keyword, the except clause is executed, and then execution
-  continues after the :keyword:`try` statement.
+* Хэрэв try хэсгээс ямар нэг алдаа гарвал алдаа гарснаас доод хэсгийн кодыг алгасна.
+  Тэгээд гарсан алдаанд таарсан төрөл :keyword:`except` хэсэг дээр очно, except 
+  хэсэг ажиллаж ба ажилласны дараа үргэлжлэн :keyword:`try` илэрхийллийн зогссон
+  газраас ажиллаж эхэлнэ.
 
-* If an exception occurs which does not match the exception named in the except
-  clause, it is passed on to outer :keyword:`try` statements; if no handler is
-  found, it is an *unhandled exception* and execution stops with a message as
-  shown above.
+* Хэрэв гарсан алдаа нь алдаа барилт дотор байхгүй бол :keyword:`try` илэрхийллээс гаран
+  ямар алдаа барилт олдоогүй тул  *unhandled exception* гэдэг мэдээлэл гарган ажиллагааг
+  зогсооно.
 
 A :keyword:`try` statement may have more than one except clause, to specify
 handlers for different exceptions.  At most one handler will be executed.
