@@ -64,81 +64,59 @@ Let's begin with some definitions.
 болно. Жишээлбэл ``del modname.the_answer`` гэвэл ``modname`` объектоос
 :attr:`the_answer` гэдэг нэрийг хасна.
 
-Namespaces are created at different moments and have different lifetimes.  The
-namespace containing the built-in names is created when the Python interpreter
-starts up, and is never deleted.  The global namespace for a module is created
-when the module definition is read in; normally, module namespaces also last
-until the interpreter quits.  The statements executed by the top-level
-invocation of the interpreter, either read from a script file or interactively,
-are considered part of a module called :mod:`__main__`, so they have their own
-global namespace.  (The built-in names actually also live in a module; this is
-called :mod:`__builtin__`.)
+Нэрийн мужнууд нь өөр өөр үед өөр өөр амьдрах циклтэйгээр бий болдог. Пайтон
+харилцуурын дотоод нэрийн муж нь харилцуур дөнгөж асах үед бий болж хэзээ ч
+устдаггүй. Модулийн глобал нэрийн муж нь модулийг ачааллах үед үед орж харилцуурыг
+ажиллаж дуусах хүртэл амьдардаг. Харилцуурын тусламжтайгаар ажиллуулсан
+скрипт файл эсвэл интерактив орчин нь :mod:`__main__` гэсэн модулд амьдардаг.
+Мөн Пайтоны дотоод нэрийн муж нь :mod:`__builtin__` гэсэн модульд амьдарна.
 
-The local namespace for a function is created when the function is called, and
-deleted when the function returns or raises an exception that is not handled
-within the function.  (Actually, forgetting would be a better way to describe
-what actually happens.)  Of course, recursive invocations each have their own
-local namespace.
+Локал нь нэрийн муж нь функц дуудагдах үед бий болж функц буцах үед эсвэл баригдаагүй
+онцгой тохиолдол гарах үед устгагддаг. Мэдээж хэрэг рекурсив дуудалтууд нь
+бүгд өөрийн гэсэн локал нэрийн мужтай.
 
-A *scope* is a textual region of a Python program where a namespace is directly
-accessible.  "Directly accessible" here means that an unqualified reference to a
-name attempts to find the name in the namespace.
+*Хүрээ* гэдэг нь Пайтон програмын тодорхой текст хэсэг бөгөөд тэр хэсгээс нэрийн
+муж руу шууд хандах боломжтой хэсгийг хэлдэг. "Шууд хандах" гэдэг нь нэрийн муж
+дах нэр лүү шууд заагчаар дамжуулан хандахыг хэлнэ.
 
-Although scopes are determined statically, they are used dynamically. At any
-time during execution, there are at least three nested scopes whose namespaces
-are directly accessible:
+Хэдийгээр хүрээ нь статик байдаг боловч тэдгээрийг динамикаар хэрэглэдэг. Ажиллах
+явцад дор хаяж гурван нэг нэгнийгээ агуулсан нэрийн мужуудад хандаж болдог:
 
-* the innermost scope, which is searched first, contains the local names
-* the scopes of any enclosing functions, which are searched starting with the
-  nearest enclosing scope, contains non-local, but also non-global names
-* the next-to-last scope contains the current module's global names
-* the outermost scope (searched last) is the namespace containing built-in names
+* хамгийн дотор талын хүрээ, энд эхэлж локал нэрүүдийг хайдаг
+* локал хэсгээс эхлэн хамгийн гадна талын агуулж буй функцийн хүрээ хүртэл нэрийг хайна
+* хамгийн гаднах функцийн хүрээний гадна модулийн глобал нэрүүд байна
+* эцэст нь дотоот нэрийн мужаас нэрийг хайна
 
-If a name is declared global, then all references and assignments go directly to
-the middle scope containing the module's global names. Otherwise, all variables
-found outside of the innermost scope are read-only (an attempt to write to such
-a variable will simply create a *new* local variable in the innermost scope,
-leaving the identically named outer variable unchanged).
+Хэрвээ нэр нь глобалаар зарлагдсан бол бүх заагч болон хандах үйлдлүүд нь глобал
+нэрийг агуулж буй хүрээлэлд ордог. Глобалаар зарлагдаагүй үед хамгийн дотор талын
+хүрээллээс гадуурх хүрээн дэх хувьсагчид нь уншихаар хандагддаг. Хэрвээ өөрчлөх
+гэж оролдвол хамгийн дотор талын хүрээнд шинэ локал хувьсагч үүснэ.
 
-Usually, the local scope references the local names of the (textually) current
-function.  Outside functions, the local scope references the same namespace as
-the global scope: the module's namespace. Class definitions place yet another
-namespace in the local scope.
+Локал нэрийн муж нь ажиллаж байгаа функцийнхээ хүрээнд байгаа нэрүүдийг агуулдаг.
+Харин функцийн гадна локал нь глобалтайгаа адилхан буюу модулийн нэрийн мужтай
+адилхан болдог. Классын тодорхойлолт нь өөр нэгэн нэрийн мужийг локалдаа оруулдаг.
 
-It is important to realize that scopes are determined textually: the global
-scope of a function defined in a module is that module's namespace, no matter
-from where or by what alias the function is called.  On the other hand, the
-actual search for names is done dynamically, at run time --- however, the
-language definition is evolving towards static name resolution, at "compile"
-time, so don't rely on dynamic name resolution!  (In fact, local variables are
-already determined statically.)
-
-A special quirk of Python is that -- if no :keyword:`global` statement is in
-effect -- assignments to names always go into the innermost scope.  Assignments
-do not copy data --- they just bind names to objects.  The same is true for
-deletions: the statement ``del x`` removes the binding of ``x`` from the
-namespace referenced by the local scope.  In fact, all operations that introduce
-new names use the local scope: in particular, :keyword:`import` statements and
-function definitions bind the module or function name in the local scope.  (The
-:keyword:`global` statement can be used to indicate that particular variables
-live in the global scope.)
-
+Мөн :keyword:`global` гэсэн түлхүүр үгийг хэрэглэхгүй бол нэрэнд утга олгож байгаа
+бүхий л үйлдлүүд нь хамгийн доторх хүрээний нэрийн мужид ордог. Утга олгох үйлдэл
+нь өгөгдлийг хуулбарладаггүй --- тухайн нэрэнд л объектийг холбож өгдөг. Устгах
+үед ч мөн энэ санааг давтдаг. ``del x`` илэрхийлэл нь ``x`` гэсэн нэрийг локал хүрээн
+дэх нэрийн мужаас хасдаг. Мөн :keyword:`import` илэрхийлэл нь локал хүрээнд функцийн
+нэр эсвэл модулийг оруулж ирдэг. :keyword:`global` түлхүүр үгийг глобал хүрээн 
+дэх нэр лүү зориудаар хандахад хэрэглэнэ.
 
 .. _tut-firstclasses:
 
-A First Look at Classes
+Класс дээрх анхны алхам
 =======================
 
-Classes introduce a little bit of new syntax, three new object types, and some
-new semantics.
-
+Классууд нь багахан хэмжээний шинэ синтакс, гурван шинэ объект, мөн семантикуудтай.
 
 .. _tut-classdefinition:
 
-Class Definition Syntax
------------------------
+Класс зарлах синтакс
+--------------------
 
-The simplest form of class definition looks like this::
+Класс зарлах синтакс::
 
    class ClassName:
        <statement-1>
@@ -147,42 +125,36 @@ The simplest form of class definition looks like this::
        .
        <statement-N>
 
-Class definitions, like function definitions (:keyword:`def` statements) must be
-executed before they have any effect.  (You could conceivably place a class
-definition in a branch of an :keyword:`if` statement, or inside a function.)
+Классын зарлагаа нь функцийн зарлагаатайгаа адил (:keyword:`def` түлхүүр)
+хэрэглэгдэхээсээ өмнө зарлагдах ёстой. Функц дотор эсвэл дэд илэрхийлэл дотор 
+функцийн зарлагааг байрлуулж болно.
 
-In practice, the statements inside a class definition will usually be function
-definitions, but other statements are allowed, and sometimes useful --- we'll
-come back to this later.  The function definitions inside a class normally have
-a peculiar form of argument list, dictated by the calling conventions for
-methods --- again, this is explained later.
+Ихэвчлэн классын зарлагаан дотор функцүүдийг нь тодорхойлж өгдөг боловч бусад
+илэрхийллүүдийг бичихийг зөвшөөрдөг. Энэ тухай хойно үзэх болно. Функцийн
+зарлагаа нь өөрийн гэсэн онцлогтой, мөн дуудах арга барилтай байдаг.
 
-When a class definition is entered, a new namespace is created, and used as the
-local scope --- thus, all assignments to local variables go into this new
-namespace.  In particular, function definitions bind the name of the new
-function here.
+Удирдлага классын зарлагаа руу орох үед шинэ нэрийн муж бий болдог. Энэ муж нь
+локал хүрээтэй ижил байдаг. Тиймээс локал хувьсагчид утга олгож байгаа бол энэ нь
+шинэ нэрийн муж руу утга олгоод байна гэсэн үг. Функцийн зарлагаа нь шинэ
+нэрийг классын нэрийн муждаа оруулна.
 
-When a class definition is left normally (via the end), a *class object* is
-created.  This is basically a wrapper around the contents of the namespace
-created by the class definition; we'll learn more about class objects in the
-next section.  The original local scope (the one in effect just before the class
-definition was entered) is reinstated, and the class object is bound here to the
-class name given in the class definition header (:class:`ClassName` in the
-example).
-
+Классын зарлагаа нь төгсгөл хүртлээ ямар нэгэн асуудалгүй явж дуусвал *класс объект*
+үүснэ. Энэ нь классын тодорхойлолтоор бий болсон нэрийн мужийн агуулах юм.
+Дараагийн хэсэгт энэ талаар дэлгэрэнгүй үзнэ. Дараагаар нь анх байсан локал
+муж нь сэргээгдэж класс объект нь классын зарлагаанд байсан нэртэйгээр
+үүснэ. (Жишээн дээрх :class:`ClassName`)
 
 .. _tut-classobjects:
 
-Class Objects
--------------
+Класс Объект
+------------
 
-Class objects support two kinds of operations: attribute references and
-instantiation.
+Класс объект нь хоёр төрлийн үйлдэлтэй: атрибутад хандах, байгуулах
 
-*Attribute references* use the standard syntax used for all attribute references
-in Python: ``obj.name``.  Valid attribute names are all the names that were in
-the class's namespace when the class object was created.  So, if the class
-definition looked like this::
+*Атрибутад хандах* үйлдэл нь Пайтонгийн бүх тохиолдолд атрибутад хандах ерөнхий
+синтакс болох ``obj.name``-ийг ашигладаг. Класс объект үүсгэх үед бий болсон 
+нэрийн мужуудад хандаж болдог. Жишээ нь класс доорх байдлаар тодорхойлогдсон
+бол::
 
    class MyClass:
        """A simple example class"""
@@ -190,38 +162,34 @@ definition looked like this::
        def f(self):
            return 'hello world'
 
-then ``MyClass.i`` and ``MyClass.f`` are valid attribute references, returning
-an integer and a function object, respectively. Class attributes can also be
-assigned to, so you can change the value of ``MyClass.i`` by assignment.
-:attr:`__doc__` is also a valid attribute, returning the docstring belonging to
-the class: ``"A simple example class"``.
+``MyClass.i``, ``MyClass.f`` гэсэн атрибутуудад хандаж болох ба тус бүрдээ
+бүхэл тоо, функц объектийг буцаана. Классын атрибутад утга оноож өөрчилж болно.
+Тиймээс ``MyClass.i`` гэсэн атрибутыг өөрчилж болно. :attr:`__doc__` тайлбар
+текст(``"A simple example class"``) нь хүртэл класс объектийн атрибут юм.
 
-Class *instantiation* uses function notation.  Just pretend that the class
-object is a parameterless function that returns a new instance of the class.
-For example (assuming the above class)::
+*Байгуулах* үйлдэл нь функцийн дуудалттай адилхан. Класс объектийн нэрний
+ард хоёр хаалт тавьснаар байгуулна. Дээрх жишээний хувьд::
 
    x = MyClass()
 
-creates a new *instance* of the class and assigns this object to the local
-variable ``x``.
+Энэ нь шинэ MyClass төрлийн объект үүсгэж локал хувьсагч ``x``-д оноож байна.
 
-The instantiation operation ("calling" a class object) creates an empty object.
-Many classes like to create objects with instances customized to a specific
-initial state. Therefore a class may define a special method named
-:meth:`__init__`, like this::
+Байгуулах үйл ажиллагаа буюу Класс объектийг "дуудах" нь хоосон объектийг үүсгэдэг.
+Ихэнхдээ объектийг байгуулах үед түүнийг анхдагч утгууд олгож байгуулдаг. Тиймээс
+класс нь :meth:`__init__` нэртэй тусгай функцийг дараах байдлаар зарладаг:
 
    def __init__(self):
        self.data = []
 
-When a class defines an :meth:`__init__` method, class instantiation
-automatically invokes :meth:`__init__` for the newly-created class instance.  So
-in this example, a new, initialized instance can be obtained by::
+:meth:`__init__` функцийг класс зарласан бол байгуулах үед :meth:`__init__` 
+функцийг автоматаар дууддаг. Жишээн дээрхээр бол объектод анхдагч утгуудыг 
+байгуулах үед нь өгсөн.
 
    x = MyClass()
 
-Of course, the :meth:`__init__` method may have arguments for greater
-flexibility.  In that case, arguments given to the class instantiation operator
-are passed on to :meth:`__init__`.  For example, ::
+:meth:`__init__` функц нь илүү уян хатан байхын тулд аргументууд авч болдог.
+Байгуулах үед өгсөн аргументууд нь :meth:`__init__` функцийг дуудах аргумент
+болдог. Жишээ нь ::
 
    >>> class Complex:
    ...     def __init__(self, realpart, imagpart):
@@ -235,8 +203,8 @@ are passed on to :meth:`__init__`.  For example, ::
 
 .. _tut-instanceobjects:
 
-Instance Objects
-----------------
+Байгуулагдсан объект
+--------------------
 
 Now what can we do with instance objects?  The only operations understood by
 instance objects are attribute references.  There are two kinds of valid
