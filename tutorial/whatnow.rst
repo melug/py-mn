@@ -1,68 +1,58 @@
 .. _tut-whatnow:
 
-*********
-What Now?
-*********
+***************
+Дараа нь юу вэ?
+***************
 
-Reading this tutorial has probably reinforced your interest in using Python ---
-you should be eager to apply Python to solving your real-world problems. Where
-should you go to learn more?
+Энэ хичээлийг уншихад таны Пайтоныг хэрэглэх сонирхол өссөн байх ---
+Пайтоныг ашиглан бодит асуудлуудыг шийдэхийн хүслэн болж байх учиртай. Харин
+илүү ихийг сурч мэдэхийн тулд юу үзэх вэ?
 
-This tutorial is part of Python's documentation set.   Some other documents in
-the set are:
+Энэ хичээл бол Пайтоны цогц баримтжуулалтын нэг хэсэг юм. Энэ цогцолбор дахь
+зарим баримтаас сонирхуулбал:
 
 * :ref:`library-index`:
 
-  You should browse through this manual, which gives complete (though terse)
-  reference material about types, functions, and the modules in the standard
-  library.  The standard Python distribution includes a *lot* of additional code.
-  There are modules to read Unix mailboxes, retrieve documents via HTTP, generate
-  random numbers, parse command-line options, write CGI programs, compress data,
-  and many other tasks. Skimming through the Library Reference will give you an
-  idea of what's available.
+  Стандарт сангийн модуль, функц, төрлийн талаар бүрэн (боловч хураангуй)
+  лавлах бичиг болох энэ гарын авлагыг үзээрэй. Пайтоны стандарт тархац *маш их*
+  нэмэлт код агуулдаг. Юникс шуудангийн хайрцаг унших, HTTP ашиглан баримт
+  авах, санамсаргүй тоо гаргах, тушаалын мөрийн боломжийг унших, CGI програм бичих,
+  өгөгдөл шахах гээд олон ажилд зориулагдсан модуль бий. Сангийн лавлахыг
+  гүйлгэж харвал юу юу байгаа нь мэдэгдэнэ.
 
-* :ref:`install-index` explains how to install external modules written by other
-  Python users.
+* :ref:`install-index`-д бусад Пайтон хэрэглэгчдийн бичсэн гадаад модулийг
+  хэрхэн суулгахыг тайлбарласан байгаа.
 
-* :ref:`reference-index`: A detailed explanation of Python's syntax and
-  semantics.  It's heavy reading, but is useful as a complete guide to the
-  language itself.
+* :ref:`reference-index`: Пайтоны бичиглэл зүйн талаар дэлгэрэнгүй тайлбар.
+  Уншихад хүнд боловч энэхүү хэлийн бүрэн удирдамж болж чаддаг.
 
-More Python resources:
+Пайтоны бусад лавламжууд:
 
-* http://www.python.org:  The major Python Web site.  It contains code,
-  documentation, and pointers to Python-related pages around the Web.  This Web
-  site is mirrored in various places around the world, such as Europe, Japan, and
-  Australia; a mirror may be faster than the main site, depending on your
-  geographical location.
+* http://www.python.org: Пайтоны үндсэн вэб хуудас. Энд код, баримтжуулалт,
+  вэб сүлжээн дэх бусад Пайтонтой холбоотой хуудасны хаягийг агуулдаг.
+  Энэ вэб дэлхий даяарх олон газар, тухайлбал Европ, Япон, Австралид толин
+  хуулбартай байдаг. Газарзүйн байрлалаас тань хамааран толин хуулбар
+  илүү хурдан байх магадлалтай.
 
-* http://docs.python.org:  Fast access to Python's  documentation.
+* http://docs.python.org: Пайтоны баримтжуулалтыг цаг алдалгүй үзэх боломж.
 
-* http://pypi.python.org: The Python Package Index, previously also nicknamed
-  the Cheese Shop, is an index of user-created Python modules that are available
-  for download.  Once you begin releasing code, you can register it here so that
-  others can find it.
+* http://pypi.python.org: Пайтоны богцын хэлхээс буюу урьд Бяслагийн дэлгүүр
+  гэгддэг байсан энэ жагсаалтанд хэрэглэгчдийн бүтээсэн татаж авах боломжтой
+  Пайтон модулиуд байдаг. Код гаргаж эхэлсэн үедээ энд бүртгүүлбэл бусад хүмүүс
+  үзэх боломжтой болно.
 
-* http://aspn.activestate.com/ASPN/Python/Cookbook/: The Python Cookbook is a
-  sizable collection of code examples, larger modules, and useful scripts.
-  Particularly notable contributions are collected in a book also titled Python
-  Cookbook (O'Reilly & Associates, ISBN 0-596-00797-3.)
+* http://aspn.activestate.com/ASPN/Python/Cookbook/: Пайтоны жорын ном бол
+  жишээ код, томоохон модуль, хэрэгтэй скриптийн цуглуулга юм. Python Cookbook
+  (O'Reilly & Associates, ISBN 0-596-00797-3.) хэмээх номонд онцлууштай
+  зүйлс олон байдаг.
 
-For Python-related questions and problem reports, you can post to the newsgroup
-:newsgroup:`comp.lang.python`, or send them to the mailing list at
-python-list@python.org.  The newsgroup and mailing list are gatewayed, so
-messages posted to one will automatically be forwarded to the other.  There are
-around 120 postings a day (with peaks up to several hundred), asking (and
-answering) questions, suggesting new features, and announcing new modules.
-Before posting, be sure to check the list of `Frequently Asked Questions
-<http://www.python.org/doc/faq/>`_ (also called the FAQ), or look for it in the
-:file:`Misc/` directory of the Python source distribution.  Mailing list
-archives are available at http://mail.python.org/pipermail/. The FAQ answers
-many of the questions that come up again and again, and may already contain the
-solution for your problem.
-
-.. Postings figure based on average of last six months activity as
-   reported by www.egroups.com; Jan. 2000 - June 2000: 21272 msgs / 182
-   days = 116.9 msgs / day and steadily increasing. (XXX up to date figures?)
-
-
+Пайтонтой холбоотой бэрхшээл гарвал :newsgroup:`comp.lang.python` мэдээний бүлгэмд
+бичих буюу python-list@python.org захианы жагсаалт руу илгээж болно. Мэдээний
+бүлгэм болон захианы жагсаалтын аль нэг рүү бичвэл нөгөөдөх рүүгээ давхар
+илгээгддэг. Энд асуулт хариулт, шинэ боломж санал болгох, шинэ модуль зарлах
+мэт нийлэн өдөрт дунджаар 120 бичлэг (ихдээ хэдэн зуу хүрдэг) тавигддаг.
+Бичлэг үйлдэхээс өмнө `Асуулт хариулт <http://www.python.org/doc/faq/>`_ 
+(FAQ ч гэдэг) хуудсыг үзэх буюу Пайтоны эх кодын :file:`Misc` хавтсанд үзээрэй. 
+Захианы жагсаалтын хөмрөг http://mail.python.org/pipermail/ хаяг дээр бий. FAQ
+дахин дахин гардаг асуултын ихэнхэд хариулт өгдөг болохоор таны бэрхшээлийг
+давах арга тэнд байх ихээхэн магадлалтай.

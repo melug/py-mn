@@ -78,21 +78,21 @@ Templating
 эцсийн хэрэглэгчээр засуулахад зориулан бичиглэлийг хялбарчилдаг. Ингэснээр
 хэрэглэгч нь өөрийн програмаа өөр програмтай нэгтгэн сайжруулахад тус болно.
 
-The format uses placeholder names formed by ``$`` with valid Python identifiers
-(alphanumeric characters and underscores).  Surrounding the placeholder with
-braces allows it to be followed by more alphanumeric letters with no intervening
-spaces.  Writing ``$$`` creates a single escaped ``$``::
+Формат нь байралын нэр ашиглахдаа Пайтонд таниулахын тулд ``$`` тэмдэг
+ашигладаг байна.(альфа тооны тэмдэгтүүд болон доогуур зураас) Байрлалын
+нэрээ угалзан хаалтаар хаах бөгөөд араас нь тэмдэгтүүд завсрын зайгүй 
+хэрэглэж болно. ``$`` бичихдээ ``$$`` бичнэ:: 
 
    >>> from string import Template
    >>> t = Template('${village}folk send $$10 to $cause.')
    >>> t.substitute(village='Nottingham', cause='the ditch fund')
    'Nottinghamfolk send $10 to the ditch fund.'
 
-The :meth:`substitute` method raises a :exc:`KeyError` when a placeholder is not
-supplied in a dictionary or a keyword argument. For mail-merge style
-applications, user supplied data may be incomplete and the
-:meth:`safe_substitute` method may be more appropriate --- it will leave
-placeholders unchanged if data is missing::
+:meth:`substitue` метод нь толь эсвэл гарнаас өгсөн аргументад байрлалын нэр
+өгөгдөөгүй бол :exc:`KeyError` алдаа өгдөг. Майл нийлүүлэх стилийн програмд 
+хэрэглэгч өгөгдлөө бүрэн бус өгж болох ба :meth:`safe_substitute` метод нь
+энэ тохиолдолд магадгүй илүү тохиромжтой байж болно--- хэрэв өгөгдөл өгөгдөөгүй
+бол өөрчлөгдөөгүй нэрийг орхиод явна::
 
    >>> t = Template('Return the $item to $owner.')
    >>> d = dict(item='unladen swallow')
@@ -103,9 +103,10 @@ placeholders unchanged if data is missing::
    >>> t.safe_substitute(d)
    'Return the unladen swallow to $owner.'
 
-Template subclasses can specify a custom delimiter.  For example, a batch
-renaming utility for a photo browser may elect to use percent signs for
-placeholders such as the current date, image sequence number, or file format::
+Загвар дэд класс нь тусгайлан хувийн өгөгдлийн хязгаарлагч болж чадна.
+Жишээлбэл, фото хөтөчид зориулсан нэрлэх багаж хэрэгсэл нь одоогийн он
+сар, зургийн давтамжийн дугаар, эсвэл файлын формат гэх мэт байрлалын
+нэрүүдэд хувийн тэмдэг ашиглахаар сонгож болно::
 
    >>> import time, os.path
    >>> photofiles = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
@@ -125,22 +126,23 @@ placeholders such as the current date, image sequence number, or file format::
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
-Another application for templating is separating program logic from the details
-of multiple output formats.  This makes it possible to substitute custom
-templates for XML files, plain text reports, and HTML web reports.
+Загварт зориулсан өөр програмд програмын логикыг олон гаралтын форматын 
+дэлгэрэнгүйгээс салгахын тулд хэрэглэдэг. Энэ нь хувийн загварт тохирсон 
+XML файлууд, энгийн текст тайлангууд, HTML веб тайлангуудыг үүсгэх 
+боломжтой гэсэн үг. 
 
 
 .. _tut-binary-formats:
 
-Working with Binary Data Record Layouts
-=======================================
+Бинари өгөгдөлтэй ажиллах
+=========================
 
-The :mod:`struct` module provides :func:`pack` and :func:`unpack` functions for
-working with variable length binary record formats.  The following example shows
-how to loop through header information in a ZIP file without using the
-:mod:`zipfile` module.  Pack codes ``"H"`` and ``"I"`` represent two and four
-byte unsigned numbers respectively.  The ``"<"`` indicates that they are
-standard size and in little-endian byte order::
+:mod:`struct` модул нь хувьсах урттай бинари форматтай ажиллах :func:`pack` болон
+:func:`unpack` гэсэн функцүүдтэй. Дараах жишээн дээр ZIP файлын толгойн хэсгийн
+мэдээлэлд давталт хийн жишээг :mod:`zipfile` модулийн тусламжтайгаар харуулсан 
+байна. Багц ``"H"`` болон ``"I"`` кодууд нь нэрлэсэн дарааллаар хоёр болон дөрвөн
+тэмдэггүй тоог үзүүлнэ. ``"<"`` энэ нь стандарт хэмжээ болон бага эндиан байтын
+дарааллыг илэрхийлдэг::
 
    import struct
 
@@ -165,13 +167,14 @@ standard size and in little-endian byte order::
 Multi-threading
 ===============
 
-Threading is a technique for decoupling tasks which are not sequentially
-dependent.  Threads can be used to improve the responsiveness of applications
-that accept user input while other tasks run in the background.  A related use
-case is running I/O in parallel with computations in another thread.
+Threading бол дараалсан хамааралгүйгээр хосоор ажиллуулах текник юм.
+Threads програмын мэдрэмжийг нэмэгдүүлэх бөгөөд хэрэглэгч гараас утга
+хүлээж байх хооронд арын процесст өөр ажил ажиллаж байх юм. Хоорондоо
+хамааралтай оролт гаралын паралелаар ажиллаж байгаа тохиолдолд тооцооллын
+өөр трэдтэй байдаг. 
 
-The following code shows how the high level :mod:`threading` module can run
-tasks in background while the main program continues to run::
+Дараах код нь дээд түвшний :mod:`threading` үндсэн модуль үргэлжлэн ажиллаж
+байхад ард нь хэрхэн ажиллаж чаддагыг харуулна::
 
    import threading, zipfile
 
@@ -193,17 +196,17 @@ tasks in background while the main program continues to run::
    background.join()    # Wait for the background task to finish
    print 'Main program waited until background was done.'
 
-The principal challenge of multi-threaded applications is coordinating threads
-that share data or other resources.  To that end, the threading module provides
-a number of synchronization primitives including locks, events, condition
-variables, and semaphores.
+Олон трэдтэй програмын хамгийн чухал шаардлага бол хуваасан өгөгдөл эсвэл 
+бусад нөөцийг харилцан уялдуулахад оршино. Энэ хүртэл, threading модуль нь 
+олон тооны цоож агуулсан үндсэн синхрон, эвентүүд, нөхцөлт хувьсагчууд, 
+болон семафоруудыг олгодог.
 
-While those tools are powerful, minor design errors can result in problems that
-are difficult to reproduce.  So, the preferred approach to task coordination is
-to concentrate all access to a resource in a single thread and then use the
-:mod:`Queue` module to feed that thread with requests from other threads.
-Applications using :class:`Queue.Queue` objects for inter-thread communication
-and coordination are easier to design, more readable, and more reliable.
+Тэдгээр хэрэгслүүд хүчирхэг байхад, бага зэргийн дизайны алдаанууд өөрөөр 
+хуулбарлан бүтээхэд асуудал үүсгэж чадна. Ийм учраас, онцгой эрхтэй дөхөлт нь
+ажил хуваарилалт хийхдээ нэг трэдээс бүх нөөц рүү хандах ба :mod:`Queue` модуль 
+нь бусад трэдээс шаардлагатай мэдээллээр хангахад тусладаг. Програмд хэрэглэхдээ
+:class:`Queue.Queue` объектийг трэд хоорондын холбоо болон зохицуулахад илүү 
+хялбар, илүү эвтэйхэн, илүү уян хатан загварчлагдсан.
 
 
 .. _tut-logging:
@@ -211,8 +214,9 @@ and coordination are easier to design, more readable, and more reliable.
 Logging
 =======
 
-The :mod:`logging` module offers a full featured and flexible logging system.
-At its simplest, log messages are sent to a file or to ``sys.stderr``::
+:mod:`logging` модуль нь бүрэн засагдсан уян хатан логийн систем юм.
+Хамгийн энгийнээр лог бичлэгийг файл эсвэл стандарт алдаа ``sys.stderr``
+руу гаргаж болно::
 
    import logging
    logging.debug('Debugging information')
@@ -221,39 +225,39 @@ At its simplest, log messages are sent to a file or to ``sys.stderr``::
    logging.error('Error occurred')
    logging.critical('Critical error -- shutting down')
 
-This produces the following output::
+Энэ нь дараах гаралтыг гаргана::
 
    WARNING:root:Warning:config file server.conf not found
    ERROR:root:Error occurred
    CRITICAL:root:Critical error -- shutting down
 
-By default, informational and debugging messages are suppressed and the output
-is sent to standard error.  Other output options include routing messages
-through email, datagrams, sockets, or to an HTTP Server.  New filters can select
-different routing based on message priority: :const:`DEBUG`, :const:`INFO`,
-:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`.
+Анхны утгаараа мэдээллийн болон дебугийн мессежийн гаралтыг стандарт алдаа 
+руу илгээдэг. Бусад гаралтын сонголтууд нь чиглүүлэх мессежэд багтдаг ба үүнд
+майл явуулах, датаграмууд, сокетууд, эсвэл HTTP сервер байж болно. Шинэ 
+шүүлтүүрүүд нь мессежний зэрэглэлээр чиглүүлэгддэг: :const:`DEBUG`, 
+:const:`INFO`,:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`.
 
-The logging system can be configured directly from Python or can be loaded from
-a user editable configuration file for customized logging without altering the
-application.
+Лог бичлэгийн систем нь Пайтонгоос шууд тохируулагддаг эсвэл хэрэглэгч өөрчлөх
+боломжтой тохиргооны файл өөрсдөө зохион бичиж болно.
 
 
 .. _tut-weak-references:
 
-Weak References
-===============
+Нэр хүндгүй заалтууд
+====================
 
-Python does automatic memory management (reference counting for most objects and
-:term:`garbage collection` to eliminate cycles).  The memory is freed shortly
-after the last reference to it has been eliminated.
+Пайтон автомат санах ойн удирдлагатай(ихэнх объектуудын заалтыг тоолох болон
+:term:`garbage collection` -р циклийг тогтоодог). Санах ой бол сүүлийн заалт
+чөлөөлөгдсний дараа чөлөөлөгддөг.
 
-This approach works fine for most applications but occasionally there is a need
-to track objects only as long as they are being used by something else.
-Unfortunately, just tracking them creates a reference that makes them permanent.
-The :mod:`weakref` module provides tools for tracking objects without creating a
-reference.  When the object is no longer needed, it is automatically removed
-from a weakref table and a callback is triggered for weakref objects.  Typical
-applications include caching objects that are expensive to create::
+Энэ нь ихэнх програм дээр сайн ажилладаг боловч санамсаргүй тохиолдолд 
+объектийг олохдоо болон зарим нэг юманд ашиглаж болно. Харамсалтай нь 
+ингэж мөшгөхөд түүний заалтыг үүсгэдэг түүнийг тэр чигээр нь үлдээдэг.
+:mod:`weakref` модуль нь объектыг түүний заалттай нь үүсгэх хэрэгслээр 
+хангадаг. Объект нь түр хугацаанл хэрэгтэй үед сул заалтын хүснэгтээс
+хасагдах ба сул заалтын объектуудад зориулан эргэн дуудагддаг. Энгийн 
+програмууд нь объектыг кэшлэдэг бөгөөд тэр нь үүсгэхэд хэтэрхий 
+үрэлгэн болдог::
 
    >>> import weakref, gc
    >>> class A:
@@ -281,18 +285,17 @@ applications include caching objects that are expensive to create::
 
 .. _tut-list-tools:
 
-Tools for Working with Lists
-============================
+Жагсаалттай ажиллах хэрэгслүүд
+==============================
 
-Many data structure needs can be met with the built-in list type. However,
-sometimes there is a need for alternative implementations with different
-performance trade-offs.
+Олон өгөгдлийн бүтэц дээр бид жагсаалт төрөлтэй таардаг. Харин,
+зарим тохиолдолд үүнийг хийхэд арай өөр хэрэгжүүлэлт хэрэг болдог.
 
-The :mod:`array` module provides an :class:`array()` object that is like a list
-that stores only homogeneous data and stores it more compactly.  The following
-example shows an array of numbers stored as two byte unsigned binary numbers
-(typecode ``"H"``) rather than the usual 16 bytes per entry for regular lists of
-Python int objects::
+:mod:`array` модуль нь :class:`array()` объект үүсгэдэг бөгөөд энэ нь 
+яг л жагсаалт шиг зөвхөн нэг төрлийн өгөгдөл хадгалдаг бас их нягт байдаг.
+Дараах жишээ код нь хоёр байтын тэмдэггүй хоёртын тоо байдлаар жагсаалт 
+болгон (төрлийн код ``"H"``)  хадгалаад энгийн 16 байт Пайтонгийн инт объект 
+болгон ашиглаж байна::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -301,10 +304,10 @@ Python int objects::
    >>> a[1:3]
    array('H', [10, 700])
 
-The :mod:`collections` module provides a :class:`deque()` object that is like a
-list with faster appends and pops from the left side but slower lookups in the
-middle. These objects are well suited for implementing queues and breadth first
-tree searches::
+:mod:`collections` модуль нь :class:`deque()` классын объект бөгөөд жагсаалтад
+зүүн талаас нь нэмэх болон гаргадаг учир маш хурдан гэхдээ хайхад удаан байдаг.
+Эдгээр объектууд н дараалал(queue) болон өргөнөөр хайх модны хайлтыг 
+хэрэгжүүлэхэд яг таардаг::
 
    >>> from collections import deque
    >>> d = deque(["task1", "task2", "task3"])
@@ -320,9 +323,9 @@ tree searches::
                return m
            unsearched.append(m)
 
-In addition to alternative list implementations, the library also offers other
-tools such as the :mod:`bisect` module with functions for manipulating sorted
-lists::
+Нэмх хэлэхэд өөр жагсаалтын хэрэгжүүлэлтүүд нь сангийн бусад хэрэгслүүдэд 
+санал болгодог бөгөөд тэдний нэг :mod:`bisect` модуль нь функцуудийнхээ
+хамт эрэмблэгдсэн жагсаалтыг удирдахад дөхөм болдог байна.::
 
    >>> import bisect
    >>> scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
@@ -330,10 +333,11 @@ lists::
    >>> scores
    [(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
 
-The :mod:`heapq` module provides functions for implementing heaps based on
-regular lists.  The lowest valued entry is always kept at position zero.  This
-is useful for applications which repeatedly access the smallest element but do
-not want to run a full list sort::
+:mod:`heapq` модульийн функцууд нь энгийн жагсаалт дээр овоолго(heap)-ийг 
+хэрэгжүүлэх боломжийг олгодог. Хамгийн үр ашиггүй орсон утга нь үргэлж
+тэг байрлалаа хадгалдаг. Үүнийг програмд хэрэглэхэд амар бөгөөд хамгийн 
+бага элемент рүү нь шууд ханддаг гэхдээ үүнийг жагсаалтыг эрэмблэхэд 
+хэрэглэх нь тийм ч сайхан санаа биш::
 
    >>> from heapq import heapify, heappop, heappush
    >>> data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
@@ -345,24 +349,24 @@ not want to run a full list sort::
 
 .. _tut-decimal-fp:
 
-Decimal Floating Point Arithmetic
-=================================
+Бутархай хөвөгч тооны арифметик
+===============================
 
-The :mod:`decimal` module offers a :class:`Decimal` datatype for decimal
-floating point arithmetic.  Compared to the built-in :class:`float`
-implementation of binary floating point, the class is especially helpful for
+:mod:`decimal` модуль нь :class:`Decimal` гэсэн классыг бутархай хөвөгч 
+арифметик тооны өгөгдлийн төрлийг дүрслэхэд санал болгодог. Хоёртын хөвөгч
+тоог хэрэгжүүлэх :class:`float` классыг харьцуулсан ба энэ класс нь тусгайлан
+танд дараах зүйлийг хийхэд туслана
 
-* financial applications and other uses which require exact decimal
-  representation,
-* control over precision,
-* control over rounding to meet legal or regulatory requirements,
-* tracking of significant decimal places, or
-* applications where the user expects the results to match calculations done by
-  hand.
+* санхүүгийн програм болон бусад хэрэглээнд бутархай тоог яг нарийвлалтайгаар
+  үзүүлэх
+* нарийвчлалийг удирдах 
+* албан ёсны эсвэл захиргааны шаардлагаар шатлалыг удирдах
+* ач холбогдолтой бутархай хэсгийг ажиглах эсвэл
+* хэрэглэгч тооцооллын үр дүнг програмаас хүсэх
 
-For example, calculating a 5% tax on a 70 cent phone charge gives different
-results in decimal floating point and binary floating point. The difference
-becomes significant if the results are rounded to the nearest cent::
+Жишээлбэл, утас цэнэглэсний хөлс 70 центээ татвар нь 5 хувийг бодохдоо 
+бутархай хөвөгч тоо болон хоёртын хөвөгч тооноос ялгаатай үр дүн гарна. 
+Энэ ялгаа нь хэрэв үр дүнг ойролцоо цент руу дугуйлсан бол гарна::
 
    >>> from decimal import *
    >>> x = Decimal('0.70') * Decimal('1.05')
@@ -373,13 +377,13 @@ becomes significant if the results are rounded to the nearest cent::
    >>> round(.70 * 1.05, 2)         # same calculation with floats
    0.73
 
-The :class:`Decimal` result keeps a trailing zero, automatically inferring four
-place significance from multiplicands with two place significance.  Decimal
-reproduces mathematics as done by hand and avoids issues that can arise when
-binary floating point cannot exactly represent decimal quantities.
+:class:`Decimal` класс нь үр дүнд тэгийг хадгалдаг, автоматаар хоёр оронтой
+хэмжээний үржигдэхүүн дөрвөн хэмжээг боддог. Бутархай нь танд математикийг 
+сэргээх ба хоёртын хөвөгч тоо нь бутархайн чанарыг яг нарийн үзүүлж чадахгүй
+үед энэ асуудлыг шийдэж өгөх болно.
 
-Exact representation enables the :class:`Decimal` class to perform modulo
-calculations and equality tests that are unsuitable for binary floating point::
+Нарийвчлалтай үзүүлэхдээ :class:`Decimal` классыг өөрийн тооцооллын модульдаа
+хэрэгжүүлэх ба хоёртын хөвөгч тоонд тохиронхгүй гэдгийг шалгаж болно::
 
    >>> Decimal('1.00') % Decimal('.10')
    Decimal('0.00')
@@ -391,7 +395,7 @@ calculations and equality tests that are unsuitable for binary floating point::
    >>> sum([0.1]*10) == 1.0
    False
 
-The :mod:`decimal` module provides arithmetic with as much precision as needed::
+:mod:`decimal` модуль арифметикийн яг нарийвчилсан хариуг гаргахад хэрэг болдог::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
